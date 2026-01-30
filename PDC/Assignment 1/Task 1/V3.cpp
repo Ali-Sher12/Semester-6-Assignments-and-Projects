@@ -5,6 +5,7 @@
 #include <cmath>
 #include <vector>
 #include <stdlib.h>
+#include <sched.h>
 
 using namespace std;
 
@@ -25,6 +26,8 @@ struct data_
 
 int thread_count = 8; // here
 int per_thread = 0;
+int no_of_cores = 8;
+
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 vector<data_> point_list;
 int PRED_POS = 0,TP = 0,FP = 0,TN = 0,FN = 0;
@@ -133,6 +136,10 @@ int main()
         int* ind = new int;
         *ind = i;
         pthread_create(threads+i, NULL, calculate_linear_score_and_prob_and_set_data, ind);
+        cpu_set_t cpuset;
+        CPU_ZERO(&cpuset);
+        CPU_SET(i%no_of_cores, &cpuset);
+        pthread_setaffinity_np(threads[i], sizeof(cpu_set_t), &cpuset);
     }
 
     for (int i = 0; i < thread_count; i++)
