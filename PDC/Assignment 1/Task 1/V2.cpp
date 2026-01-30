@@ -23,7 +23,7 @@ struct data_
     }
 };
 
-int thread_count = 128;
+int thread_count = 8; // here
 int per_thread = 0;
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 vector<data_> point_list;
