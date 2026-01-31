@@ -6,6 +6,7 @@
 
 using namespace std;
 
+int dat_percentage[3] = {10,50,100};
 int thread_count[4] = {1,2,4,8};
 int per_thread = 0;
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
@@ -40,70 +41,87 @@ void* calculate(void* arg)
     pthread_exit(NULL); 
 }
 
-void getOutput(int thr,double time_)
+void getOutput(int thr,double time_,int dat)
 {
-    cout<<"V2\n\nThreads Used: "<<thread_count[thr];    
+    cout<<"\nThreads Used: "<<thread_count[thr];    
+    cout<<"\nPercentage of data: "<<dat_percentage[dat]<<"%";    
+    cout<<"\nChunkSize: "<<per_thread<<" elements processed per chunk.";
     cout<<"\nM: "<<M;
     cout<<"\nN: "<<N;
     cout<<"\nNZ: "<<NZ;
     cout<<"\nCheckSum: "<<checkSum;    
-    cout<<"\nElapsed Time: "<<time_<<endl; 
+    cout<<"\nElapsed Time: "<<time_<<"ms"<<endl; 
 }
 
 int main()
 {
-    for( int th = 0; th < 4; th++ )
-    {
-        checkSum = 0;
-        ifstream input_file("webbase.mtx");
-        // using a the first few rows of the data set during development
-        input_file>>M;
-        input_file>>N;
-        input_file>>NZ;
-
-        while(!input_file.eof())
+    cout<<"\n------------------------\n\tV2\n------------------------\n";
+    for (int dat_count = 0; dat_count < 3; dat_count++ )
+    {    
+        for( int thr = 0; thr < 4; thr++ )
         {
-            bool data_reading_exception_done = false;
-            string row;
-            NZHolder holder;
+            checkSum = 0;
+            ifstream input_file("webbase.mtx");
+            // using a the first few rows of the data set during development
+            input_file>>M;
+            input_file>>N;
+            input_file>>NZ;
 
-            getline(input_file, row);
-            stringstream temp_stream(row);
-            int r;int c;double v;
-            temp_stream >> r >> c;
-            if (!(temp_stream >> v))
+            dat_percentage[dat_count];
+            int NZ_dat_counter = 0;
+            while(!input_file.eof())
+            {
+                bool data_reading_exception_done = false;
+                string row;
+                NZHolder holder;
+                
+                getline(input_file, row);
+                stringstream temp_stream(row);
+                int r;int c;double v;
+                temp_stream >> r >> c;
+                if (!(temp_stream >> v))
                 v = 1.0;
-            holder.set(r,c,v);
-            valid_Matrix.push_back(holder);        
+                holder.set(r,c,v);
+                valid_Matrix.push_back(holder); 
+                
+                NZ_dat_counter++;       
+                if(NZ_dat_counter >= (NZ*dat_percentage[dat_count]/100))
+                {
+                    NZ = NZ_dat_counter;
+                    cout<<"\n"<<NZ_dat_counter<<"<--\n";
+                    break;
+                }
+            }
+            
+            input_file.close();
+            
+            pthread_t* threads = new pthread_t[thread_count[thr]];
+            per_thread = (int)ceil((NZ)/thread_count[thr]);
+
+            struct timespec t_start, t_end;
+            clock_gettime(CLOCK_MONOTONIC, &t_start);    
+
+            for(int i=0;i<thread_count[thr];i++)
+            {
+                int* ind = new int;
+                *ind = i;
+                pthread_create(threads+i, NULL, calculate, ind);
+            }
+
+            for (int i = 0; i < thread_count[thr]; i++)
+            {
+                pthread_join(threads[i], NULL);
+            }
+
+            clock_gettime(CLOCK_MONOTONIC, &t_end);
+            double elapsed_ms =
+            (t_end.tv_sec - t_start.tv_sec) * 1000.0 +
+            (t_end.tv_nsec - t_start.tv_nsec) / 1e6;
+
+            getOutput(thr,elapsed_ms,dat_count);
+            valid_Matrix.clear();
+            delete[]threads;
         }
-        input_file.close();
-        
-        pthread_t* threads = new pthread_t[thread_count[th]];
-        per_thread = (int)ceil((NZ)/thread_count[th]);
-
-        struct timespec t_start, t_end;
-        clock_gettime(CLOCK_MONOTONIC, &t_start);    
-
-        for(int i=0;i<thread_count[th];i++)
-        {
-            int* ind = new int;
-            *ind = i;
-            pthread_create(threads+i, NULL, calculate, ind);
-        }
-
-        for (int i = 0; i < thread_count[th]; i++)
-        {
-            pthread_join(threads[i], NULL);
-        }
-
-        clock_gettime(CLOCK_MONOTONIC, &t_end);
-        double elapsed_ms =
-        (t_end.tv_sec - t_start.tv_sec) * 1000.0 +
-        (t_end.tv_nsec - t_start.tv_nsec) / 1e6;
-
-        getOutput(th,elapsed_ms);
-        valid_Matrix.clear();
-        delete[]threads;
     }
     return 0;
 }
