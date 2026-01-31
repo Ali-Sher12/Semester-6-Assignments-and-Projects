@@ -97,7 +97,7 @@ void getOutput(int N,double time,int dat,int thr)
 int main()
 {
     int total_num_lines = 5000001;
-    cout<<"\n------------------------\n\tV2\n------------------------\n";
+    cout<<"\n------------------------\n\tV3\n------------------------\n";
     for (int thr = 0; thr < 4; thr++ )    
     {
         for (int dat_count = 0; dat_count < 3; dat_count++ )

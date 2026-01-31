@@ -1,0 +1,138 @@
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 1$ g++ V1-o main &
+& ./main
+
+------------------------
+	V1
+------------------------
+
+500000<--
+
+Threads Used: 1
+Percentage of data: 10%
+ChunkSize: Complete
+Total Records: 500000
+PRED_POS : 327962
+TP : 180554
+FP : 147408
+TN : 124090
+FN : 47948
+
+Elapsed Time: 51.9979ms
+
+2500000<--
+
+Threads Used: 1
+Percentage of data: 50%
+ChunkSize: Complete
+Total Records: 2500000
+PRED_POS : 1641067
+TP : 905485
+FP : 735582
+TN : 620574
+FN : 238359
+
+Elapsed Time: 297.369ms
+
+Threads Used: 1
+Percentage of data: 100%
+ChunkSize: Complete
+Total Records: 5000000
+PRED_POS : 3282712
+TP : 1810915
+FP : 1471797
+TN : 1240376
+FN : 476912
+
+Elapsed Time: 628.926ms
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 1$ g++ V1.cpp -o main && ./main
+
+------------------------
+	V1
+------------------------
+
+500000<--
+
+Threads Used: 1
+Percentage of data: 10%
+ChunkSize: Complete
+Total Records: 500000
+PRED_POS : 327962
+TP : 180554
+FP : 147408
+TN : 124090
+FN : 47948
+
+Elapsed Time: 62.1899ms
+
+2500000<--
+
+Threads Used: 1
+Percentage of data: 50%
+ChunkSize: Complete
+Total Records: 2500000
+PRED_POS : 1641067
+TP : 905485
+FP : 735582
+TN : 620574
+FN : 238359
+
+Elapsed Time: 313.729ms
+
+Threads Used: 1
+Percentage of data: 100%
+ChunkSize: Complete
+Total Records: 5000000
+PRED_POS : 3282712
+TP : 1810915
+FP : 1471797
+TN : 1240376
+FN : 476912
+
+Elapsed Time: 652.57ms
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 1$ g++ V1.cpp -o main && ./main
+
+------------------------
+	V1
+------------------------
+
+500000<--
+
+Threads Used: 1
+Percentage of data: 10%
+ChunkSize: Complete
+Total Records: 500000
+PRED_POS : 327962
+TP : 180554
+FP : 147408
+TN : 124090
+FN : 47948
+
+Elapsed Time: 61.4593ms
+
+2500000<--
+
+Threads Used: 1
+Percentage of data: 50%
+ChunkSize: Complete
+Total Records: 2500000
+PRED_POS : 1641067
+TP : 905485
+FP : 735582
+TN : 620574
+FN : 238359
+
+Elapsed Time: 316.608ms
+
+Threads Used: 1
+Percentage of data: 100%
+ChunkSize: Complete
+Total Records: 5000000
+PRED_POS : 3282712
+TP : 1810915
+FP : 1471797
+TN : 1240376
+FN : 476912
+
+Elapsed Time: 633.334ms
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 1$ 
+

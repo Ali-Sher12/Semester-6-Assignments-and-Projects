@@ -1,0 +1,498 @@
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 1$ g++ V3.cpp -o main && ./main
+
+------------------------
+	V3
+------------------------
+
+500000<--
+
+Threads Used: 1
+Percentage of data: 10%
+ChunkSize: 500000
+Total Records: 500000
+PRED_POS : 327962
+TP : 180554
+FP : 147408
+TN : 124090
+FN : 47948
+
+Elapsed Time: 128.444ms
+
+2500000<--
+
+Threads Used: 1
+Percentage of data: 50%
+ChunkSize: 3000000
+Total Records: 3000000
+PRED_POS : 1969029
+TP : 1086039
+FP : 882990
+TN : 744664
+FN : 286307
+
+Elapsed Time: 730.012ms
+
+Threads Used: 1
+Percentage of data: 100%
+ChunkSize: 8000000
+Total Records: 8000000
+PRED_POS : 5251741
+TP : 2896954
+FP : 2354787
+TN : 1985040
+FN : 763219
+
+Elapsed Time: 1921.57ms
+
+500000<--
+
+Threads Used: 2
+Percentage of data: 10%
+ChunkSize: 4250000
+Total Records: 8500000
+PRED_POS : 5579703
+TP : 3077508
+FP : 2502195
+TN : 2109130
+FN : 811167
+
+Elapsed Time: 1073ms
+
+2500000<--
+
+Threads Used: 2
+Percentage of data: 50%
+ChunkSize: 5500000
+Total Records: 11000000
+PRED_POS : 7220770
+TP : 3982993
+FP : 3237777
+TN : 2729704
+FN : 1049526
+
+Elapsed Time: 944.848ms
+
+Threads Used: 2
+Percentage of data: 100%
+ChunkSize: 8000000
+Total Records: 16000000
+PRED_POS : 10503482
+TP : 5793908
+FP : 4709574
+TN : 3970080
+FN : 1526438
+
+Elapsed Time: 1591.49ms
+
+500000<--
+
+Threads Used: 4
+Percentage of data: 10%
+ChunkSize: 4125000
+Total Records: 16500000
+PRED_POS : 10831444
+TP : 5974462
+FP : 4856982
+TN : 4094170
+FN : 1574386
+
+Elapsed Time: 1036.63ms
+
+2500000<--
+
+Threads Used: 4
+Percentage of data: 50%
+ChunkSize: 4750000
+Total Records: 19000000
+PRED_POS : 12472511
+TP : 6879947
+FP : 5592564
+TN : 4714744
+FN : 1812745
+
+Elapsed Time: 1175.28ms
+
+Threads Used: 4
+Percentage of data: 100%
+ChunkSize: 6000000
+Total Records: 24000000
+PRED_POS : 15755223
+TP : 8690862
+FP : 7064361
+TN : 5955120
+FN : 2289657
+
+Elapsed Time: 1477.13ms
+
+500000<--
+
+Threads Used: 8
+Percentage of data: 10%
+ChunkSize: 3062500
+Total Records: 24500000
+PRED_POS : 16083185
+TP : 8871416
+FP : 7211769
+TN : 6079210
+FN : 2337605
+
+Elapsed Time: 1050.46ms
+
+2500000<--
+
+Threads Used: 8
+Percentage of data: 50%
+ChunkSize: 3375000
+Total Records: 27000000
+PRED_POS : 17724252
+TP : 9776901
+FP : 7947351
+TN : 6699784
+FN : 2575964
+
+Elapsed Time: 1204.22ms
+
+Threads Used: 8
+Percentage of data: 100%
+ChunkSize: 4000000
+Total Records: 32000000
+PRED_POS : 21006964
+TP : 11587816
+FP : 9419148
+TN : 7940160
+FN : 3052876
+
+Elapsed Time: 1267.41ms
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 1$ g++ V3.cpp -o main && ./main
+
+------------------------
+	V3
+------------------------
+
+500000<--
+
+Threads Used: 1
+Percentage of data: 10%
+ChunkSize: 500000
+Total Records: 500000
+PRED_POS : 327962
+TP : 180554
+FP : 147408
+TN : 124090
+FN : 47948
+
+Elapsed Time: 107.083ms
+
+2500000<--
+
+Threads Used: 1
+Percentage of data: 50%
+ChunkSize: 3000000
+Total Records: 3000000
+PRED_POS : 1969029
+TP : 1086039
+FP : 882990
+TN : 744664
+FN : 286307
+
+Elapsed Time: 535.531ms
+
+Threads Used: 1
+Percentage of data: 100%
+ChunkSize: 8000000
+Total Records: 8000000
+PRED_POS : 5251741
+TP : 2896954
+FP : 2354787
+TN : 1985040
+FN : 763219
+
+Elapsed Time: 1399.14ms
+
+500000<--
+
+Threads Used: 2
+Percentage of data: 10%
+ChunkSize: 4250000
+Total Records: 8500000
+PRED_POS : 5579703
+TP : 3077508
+FP : 2502195
+TN : 2109130
+FN : 811167
+
+Elapsed Time: 1031.04ms
+
+2500000<--
+
+Threads Used: 2
+Percentage of data: 50%
+ChunkSize: 5500000
+Total Records: 11000000
+PRED_POS : 7220770
+TP : 3982993
+FP : 3237777
+TN : 2729704
+FN : 1049526
+
+Elapsed Time: 1334.42ms
+
+Threads Used: 2
+Percentage of data: 100%
+ChunkSize: 8000000
+Total Records: 16000000
+PRED_POS : 10503482
+TP : 5793908
+FP : 4709574
+TN : 3970080
+FN : 1526438
+
+Elapsed Time: 1578.77ms
+
+500000<--
+
+Threads Used: 4
+Percentage of data: 10%
+ChunkSize: 4125000
+Total Records: 16500000
+PRED_POS : 10831444
+TP : 5974462
+FP : 4856982
+TN : 4094170
+FN : 1574386
+
+Elapsed Time: 977.504ms
+
+2500000<--
+
+Threads Used: 4
+Percentage of data: 50%
+ChunkSize: 4750000
+Total Records: 19000000
+PRED_POS : 12472511
+TP : 6879947
+FP : 5592564
+TN : 4714744
+FN : 1812745
+
+Elapsed Time: 1123.22ms
+
+Threads Used: 4
+Percentage of data: 100%
+ChunkSize: 6000000
+Total Records: 24000000
+PRED_POS : 15755223
+TP : 8690862
+FP : 7064361
+TN : 5955120
+FN : 2289657
+
+Elapsed Time: 1457.9ms
+
+500000<--
+
+Threads Used: 8
+Percentage of data: 10%
+ChunkSize: 3062500
+Total Records: 24500000
+PRED_POS : 16083185
+TP : 8871416
+FP : 7211769
+TN : 6079210
+FN : 2337605
+
+Elapsed Time: 737.455ms
+
+2500000<--
+
+Threads Used: 8
+Percentage of data: 50%
+ChunkSize: 3375000
+Total Records: 27000000
+PRED_POS : 17724252
+TP : 9776901
+FP : 7947351
+TN : 6699784
+FN : 2575964
+
+Elapsed Time: 818.605ms
+
+Threads Used: 8
+Percentage of data: 100%
+ChunkSize: 4000000
+Total Records: 32000000
+PRED_POS : 21006964
+TP : 11587816
+FP : 9419148
+TN : 7940160
+FN : 3052876
+
+Elapsed Time: 932.549ms
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 1$ g++ V3.cpp -o main && ./main
+
+------------------------
+	V3
+------------------------
+
+500000<--
+
+Threads Used: 1
+Percentage of data: 10%
+ChunkSize: 500000
+Total Records: 500000
+PRED_POS : 327962
+TP : 180554
+FP : 147408
+TN : 124090
+FN : 47948
+
+Elapsed Time: 69.552ms
+
+2500000<--
+
+Threads Used: 1
+Percentage of data: 50%
+ChunkSize: 3000000
+Total Records: 3000000
+PRED_POS : 1969029
+TP : 1086039
+FP : 882990
+TN : 744664
+FN : 286307
+
+Elapsed Time: 302.265ms
+
+Threads Used: 1
+Percentage of data: 100%
+ChunkSize: 8000000
+Total Records: 8000000
+PRED_POS : 5251741
+TP : 2896954
+FP : 2354787
+TN : 1985040
+FN : 763219
+
+Elapsed Time: 1037.07ms
+
+500000<--
+
+Threads Used: 2
+Percentage of data: 10%
+ChunkSize: 4250000
+Total Records: 8500000
+PRED_POS : 5579703
+TP : 3077508
+FP : 2502195
+TN : 2109130
+FN : 811167
+
+Elapsed Time: 718.634ms
+
+2500000<--
+
+Threads Used: 2
+Percentage of data: 50%
+ChunkSize: 5500000
+Total Records: 11000000
+PRED_POS : 7220770
+TP : 3982993
+FP : 3237777
+TN : 2729704
+FN : 1049526
+
+Elapsed Time: 930.273ms
+
+Threads Used: 2
+Percentage of data: 100%
+ChunkSize: 8000000
+Total Records: 16000000
+PRED_POS : 10503482
+TP : 5793908
+FP : 4709574
+TN : 3970080
+FN : 1526438
+
+Elapsed Time: 1015.58ms
+
+500000<--
+
+Threads Used: 4
+Percentage of data: 10%
+ChunkSize: 4125000
+Total Records: 16500000
+PRED_POS : 10831444
+TP : 5974462
+FP : 4856982
+TN : 4094170
+FN : 1574386
+
+Elapsed Time: 840.858ms
+
+2500000<--
+
+Threads Used: 4
+Percentage of data: 50%
+ChunkSize: 4750000
+Total Records: 19000000
+PRED_POS : 12472511
+TP : 6879947
+FP : 5592564
+TN : 4714744
+FN : 1812745
+
+Elapsed Time: 942.661ms
+
+Threads Used: 4
+Percentage of data: 100%
+ChunkSize: 6000000
+Total Records: 24000000
+PRED_POS : 15755223
+TP : 8690862
+FP : 7064361
+TN : 5955120
+FN : 2289657
+
+Elapsed Time: 1194.1ms
+
+500000<--
+
+Threads Used: 8
+Percentage of data: 10%
+ChunkSize: 3062500
+Total Records: 24500000
+PRED_POS : 16083185
+TP : 8871416
+FP : 7211769
+TN : 6079210
+FN : 2337605
+
+Elapsed Time: 838.955ms
+
+2500000<--
+
+Threads Used: 8
+Percentage of data: 50%
+ChunkSize: 3375000
+Total Records: 27000000
+PRED_POS : 17724252
+TP : 9776901
+FP : 7947351
+TN : 6699784
+FN : 2575964
+
+Elapsed Time: 962.673ms
+
+Threads Used: 8
+Percentage of data: 100%
+ChunkSize: 4000000
+Total Records: 32000000
+PRED_POS : 21006964
+TP : 11587816
+FP : 9419148
+TN : 7940160
+FN : 3052876
+
+Elapsed Time: 877.417ms
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 1$ 
+
+

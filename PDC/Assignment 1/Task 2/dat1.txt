@@ -1,0 +1,115 @@
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ g++ V1.cpp -o main && ./main
+
+------------------------
+	V1
+------------------------
+
+310553<--
+
+Threads Used: 1
+Percentage of data: 10%
+ChunkSize: Complete
+M: 1000005
+N: 1000005
+NZ: 310553
+CheckSum: 22499.2
+Elapsed Time: 2.62857ms
+
+1552768<--
+
+Threads Used: 1
+Percentage of data: 50%
+ChunkSize: Complete
+M: 1000005
+N: 1000005
+NZ: 1552768
+CheckSum: 197567
+Elapsed Time: 10.7887ms
+
+3105536<--
+
+Threads Used: 1
+Percentage of data: 100%
+ChunkSize: Complete
+M: 1000005
+N: 1000005
+NZ: 3105536
+CheckSum: 499501
+Elapsed Time: 23.8228ms
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ g++ V1.cpp -o main && ./main
+
+------------------------
+	V1
+------------------------
+
+310553<--
+
+Threads Used: 1
+Percentage of data: 10%
+ChunkSize: Complete
+M: 1000005
+N: 1000005
+NZ: 310553
+CheckSum: 22499.2
+Elapsed Time: 2.11664ms
+
+1552768<--
+
+Threads Used: 1
+Percentage of data: 50%
+ChunkSize: Complete
+M: 1000005
+N: 1000005
+NZ: 1552768
+CheckSum: 197567
+Elapsed Time: 10.3615ms
+
+3105536<--
+
+Threads Used: 1
+Percentage of data: 100%
+ChunkSize: Complete
+M: 1000005
+N: 1000005
+NZ: 3105536
+CheckSum: 499501
+Elapsed Time: 20.1268ms
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ g++ V1.cpp -o main && ./main
+
+------------------------
+	V1
+------------------------
+
+310553<--
+
+Threads Used: 1
+Percentage of data: 10%
+ChunkSize: Complete
+M: 1000005
+N: 1000005
+NZ: 310553
+CheckSum: 22498.5
+Elapsed Time: 2.04625ms
+
+1552768<--
+
+Threads Used: 1
+Percentage of data: 50%
+ChunkSize: Complete
+M: 1000005
+N: 1000005
+NZ: 1552768
+CheckSum: 197567
+Elapsed Time: 14.0974ms
+
+3105536<--
+
+Threads Used: 1
+Percentage of data: 100%
+ChunkSize: Complete
+M: 1000005
+N: 1000005
+NZ: 3105536
+CheckSum: 499501
+Elapsed Time: 20.4853ms
+

@@ -1,0 +1,364 @@
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ g++ V1.cpp -o main
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ perf record ./main
+WARNING: Kernel address maps (/proc/{kallsyms,modules}) are restricted,
+check /proc/sys/kernel/kptr_restrict and /proc/sys/kernel/perf_event_paranoid.
+
+Samples in kernel functions may not be resolved if a suitable vmlinux
+file is not found in the buildid cache or in the vmlinux path.
+
+Samples in kernel modules won't be resolved at all.
+
+If some relocation was applied (e.g. kexec) symbols may be misresolved
+even with a suitable vmlinux or kallsyms file.
+
+Couldn't record kernel reference relocation symbol
+Symbol resolution may be skewed if relocation was used (e.g. kexec).
+Check /proc/kallsyms permission or run as root.
+
+------------------------
+	V1
+------------------------
+
+310553<--
+
+Threads Used: 1
+Percentage of data: 10%
+ChunkSize: Complete
+M: 1000005
+N: 1000005
+NZ: 310553
+CheckSum: 22499.2
+Elapsed Time: 2.07258ms
+
+1552768<--
+
+Threads Used: 1
+Percentage of data: 50%
+ChunkSize: Complete
+M: 1000005
+N: 1000005
+NZ: 1552768
+CheckSum: 197567
+Elapsed Time: 10.1406ms
+
+3105536<--
+
+Threads Used: 1
+Percentage of data: 100%
+ChunkSize: Complete
+M: 1000005
+N: 1000005
+NZ: 3105536
+CheckSum: 499501
+Elapsed Time: 19.8373ms
+[ perf record: Woken up 2 times to write data ]
+[ perf record: Captured and wrote 0.446 MB perf.data (11641 samples) ]
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ g++ V2.cpp -o main
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ perf record ./main
+WARNING: Kernel address maps (/proc/{kallsyms,modules}) are restricted,
+check /proc/sys/kernel/kptr_restrict and /proc/sys/kernel/perf_event_paranoid.
+
+Samples in kernel functions may not be resolved if a suitable vmlinux
+file is not found in the buildid cache or in the vmlinux path.
+
+Samples in kernel modules won't be resolved at all.
+
+If some relocation was applied (e.g. kexec) symbols may be misresolved
+even with a suitable vmlinux or kallsyms file.
+
+Couldn't record kernel reference relocation symbol
+Symbol resolution may be skewed if relocation was used (e.g. kexec).
+Check /proc/kallsyms permission or run as root.
+
+------------------------
+	V2
+------------------------
+
+310553<--
+
+Threads Used: 1
+Percentage of data: 10%
+ChunkSize: 310553 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 310553
+CheckSum: 22498.8
+Elapsed Time: 2.44858ms
+
+310553<--
+
+Threads Used: 2
+Percentage of data: 10%
+ChunkSize: 155276 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 310553
+CheckSum: 22498.7
+Elapsed Time: 1.35474ms
+
+310553<--
+
+Threads Used: 4
+Percentage of data: 10%
+ChunkSize: 77638 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 310553
+CheckSum: 22498.7
+Elapsed Time: 1.28987ms
+
+310553<--
+
+Threads Used: 8
+Percentage of data: 10%
+ChunkSize: 38819 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 310553
+CheckSum: 22498.7
+Elapsed Time: 1.15923ms
+
+1552768<--
+
+Threads Used: 1
+Percentage of data: 50%
+ChunkSize: 1552768 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 1552768
+CheckSum: 197567
+Elapsed Time: 10.3697ms
+
+1552768<--
+
+Threads Used: 2
+Percentage of data: 50%
+ChunkSize: 776384 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 1552768
+CheckSum: 197568
+Elapsed Time: 5.92302ms
+
+1552768<--
+
+Threads Used: 4
+Percentage of data: 50%
+ChunkSize: 388192 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 1552768
+CheckSum: 197568
+Elapsed Time: 5.65804ms
+
+1552768<--
+
+Threads Used: 8
+Percentage of data: 50%
+ChunkSize: 194096 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 1552768
+CheckSum: 197568
+Elapsed Time: 4.53683ms
+
+3105536<--
+
+Threads Used: 1
+Percentage of data: 100%
+ChunkSize: 3105536 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 3105536
+CheckSum: 499501
+Elapsed Time: 20.2157ms
+
+3105536<--
+
+Threads Used: 2
+Percentage of data: 100%
+ChunkSize: 1552768 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 3105536
+CheckSum: 499500
+Elapsed Time: 11.6711ms
+
+3105536<--
+
+Threads Used: 4
+Percentage of data: 100%
+ChunkSize: 776384 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 3105536
+CheckSum: 499500
+Elapsed Time: 10.8389ms
+
+3105536<--
+
+Threads Used: 8
+Percentage of data: 100%
+ChunkSize: 388192 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 3105536
+CheckSum: 499500
+Elapsed Time: 9.50017ms
+[ perf record: Woken up 6 times to write data ]
+[ perf record: Captured and wrote 1.800 MB perf.data (47034 samples) ]
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ g++ V3.cpp -o main
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ perf record ./main
+WARNING: Kernel address maps (/proc/{kallsyms,modules}) are restricted,
+check /proc/sys/kernel/kptr_restrict and /proc/sys/kernel/perf_event_paranoid.
+
+Samples in kernel functions may not be resolved if a suitable vmlinux
+file is not found in the buildid cache or in the vmlinux path.
+
+Samples in kernel modules won't be resolved at all.
+
+If some relocation was applied (e.g. kexec) symbols may be misresolved
+even with a suitable vmlinux or kallsyms file.
+
+Couldn't record kernel reference relocation symbol
+Symbol resolution may be skewed if relocation was used (e.g. kexec).
+Check /proc/kallsyms permission or run as root.
+
+------------------------
+	V3
+------------------------
+
+310553<--
+
+Threads Used: 1
+Percentage of data: 10%
+ChunkSize: 310553 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 310553
+CheckSum: 22498.6
+Elapsed Time: 2.42947ms
+
+310553<--
+
+Threads Used: 2
+Percentage of data: 10%
+ChunkSize: 155276 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 310553
+CheckSum: 22498.7
+Elapsed Time: 2.85253ms
+
+310553<--
+
+Threads Used: 4
+Percentage of data: 10%
+ChunkSize: 77638 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 310553
+CheckSum: 22498.7
+Elapsed Time: 1.13472ms
+
+310553<--
+
+Threads Used: 8
+Percentage of data: 10%
+ChunkSize: 38819 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 310553
+CheckSum: 22498.7
+Elapsed Time: 2.29157ms
+
+1552768<--
+
+Threads Used: 1
+Percentage of data: 50%
+ChunkSize: 1552768 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 1552768
+CheckSum: 197567
+Elapsed Time: 12.0188ms
+
+1552768<--
+
+Threads Used: 2
+Percentage of data: 50%
+ChunkSize: 776384 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 1552768
+CheckSum: 197568
+Elapsed Time: 6.27128ms
+
+1552768<--
+
+Threads Used: 4
+Percentage of data: 50%
+ChunkSize: 388192 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 1552768
+CheckSum: 197568
+Elapsed Time: 6.40864ms
+
+1552768<--
+
+Threads Used: 8
+Percentage of data: 50%
+ChunkSize: 194096 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 1552768
+CheckSum: 197568
+Elapsed Time: 5.34925ms
+
+3105536<--
+
+Threads Used: 1
+Percentage of data: 100%
+ChunkSize: 3105536 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 3105536
+CheckSum: 499501
+Elapsed Time: 22.9459ms
+
+3105536<--
+
+Threads Used: 2
+Percentage of data: 100%
+ChunkSize: 1552768 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 3105536
+CheckSum: 499500
+Elapsed Time: 11.6726ms
+
+3105536<--
+
+Threads Used: 4
+Percentage of data: 100%
+ChunkSize: 776384 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 3105536
+CheckSum: 499500
+Elapsed Time: 12.4759ms
+
+3105536<--
+
+Threads Used: 8
+Percentage of data: 100%
+ChunkSize: 388192 elements processed per chunk.
+M: 1000005
+N: 1000005
+NZ: 3105536
+CheckSum: 499500
+Elapsed Time: 8.1425ms
+[ perf record: Woken up 8 times to write data ]
+[ perf record: Captured and wrote 2.051 MB perf.data (53599 samples) ]
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ 
