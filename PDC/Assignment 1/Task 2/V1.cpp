@@ -30,12 +30,14 @@ void calculate()
     }        
 }
 
-void getOutput()
+void getOutput(double time)
 {
-    cout<<"M: "<<M;
+    cout<<"\nV1\nThreads Used: 1";    
+    cout<<"\nM: "<<M;
     cout<<"\nN: "<<N;
     cout<<"\nNZ: "<<NZ;
-    cout<<"\nCheckSum: "<<checkSum<<endl;    
+    cout<<"\nCheckSum: "<<checkSum;
+    cout<<"\nElapsed Time: "<<time<<endl;
 }
 
 int main()
@@ -63,10 +65,18 @@ int main()
     }
     
     input_file.close();
+
+    struct timespec t_start, t_end;
+    clock_gettime(CLOCK_MONOTONIC, &t_start);    
+
     calculate();
-    getOutput();
 
+    clock_gettime(CLOCK_MONOTONIC, &t_end);
+    double elapsed_ms =
+    (t_end.tv_sec - t_start.tv_sec) * 1000.0 +
+    (t_end.tv_nsec - t_start.tv_nsec) / 1e6;
+
+    getOutput(elapsed_ms);
     valid_Matrix.clear();
-
     return 0;
 }

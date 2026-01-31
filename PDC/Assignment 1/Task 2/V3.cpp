@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int thread_count = 8;
+int thread_count[4] = {1,2,4,8};
 int per_thread = 0;
 int no_of_cores = 8;
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
@@ -31,68 +31,84 @@ void* calculate(void* arg)
     int thread_index = *((int*)arg);
     int start = per_thread*thread_index;
     int end_limit = ((per_thread*thread_index+per_thread)>=NZ)?NZ:(per_thread*thread_index+per_thread);
+    double sum = 0;
     for(int i=start;i<end_limit;i++)
-    {
-        pthread_mutex_lock(&lock);
-        checkSum += (valid_Matrix[i].val * ((valid_Matrix[i].c+1)%1000)/1000);
-        pthread_mutex_unlock(&lock);
-    }        
+        sum += (valid_Matrix[i].val * ((valid_Matrix[i].c+1)%1000)/1000);
+            
+    pthread_mutex_lock(&lock);
+    checkSum += sum;
+    pthread_mutex_unlock(&lock);
     pthread_exit(NULL); 
 }
 
-void getOutput()
+void getOutput(int thr,double time_)
 {
-    cout<<"M: "<<M;
+    cout<<"\nV3\nThreads Used: "<<thread_count[thr];    
+    cout<<"\nM: "<<M;
     cout<<"\nN: "<<N;
     cout<<"\nNZ: "<<NZ;
-    cout<<"\nCheckSum: "<<checkSum<<endl;    
+    cout<<"\nCheckSum: "<<checkSum;
+    cout<<"\nElapsed Time: "<<time_<<endl; 
 }
 
 int main()
 {
-    ifstream input_file("webbase.mtx");
-    // using a the first few rows of the data set during development
-    input_file>>M;
-    input_file>>N;
-    input_file>>NZ;
-
-    while(!input_file.eof())
+    for( int thr = 0; thr < 4; thr++ )
     {
-        bool data_reading_exception_done = false;
-        string row;
-        NZHolder holder;
+        checkSum = 0;
+        ifstream input_file("webbase.mtx");
+        // using a the first few rows of the data set during development
+        input_file>>M;
+        input_file>>N;
+        input_file>>NZ;
 
-        getline(input_file, row);
-        stringstream temp_stream(row);
-        int r;int c;double v;
-        temp_stream >> r >> c;
-        if (!(temp_stream >> v))
-            v = 1.0;
-        holder.set(r,c,v);
-        valid_Matrix.push_back(holder);        
-    }
-    input_file.close();
-    
-    pthread_t* threads = new pthread_t[thread_count];
-    per_thread = (int)ceil((NZ)/thread_count);
-    for(int i=0;i<thread_count;i++)
-    {
-        int* ind = new int;
-        *ind = i;
-        pthread_create(threads+i, NULL, calculate, ind);
-        cpu_set_t cpuset;
-        CPU_ZERO(&cpuset);
-        CPU_SET(i%no_of_cores, &cpuset);
-        pthread_setaffinity_np(threads[i], sizeof(cpu_set_t), &cpuset);        
-    }
+        while(!input_file.eof())
+        {
+            bool data_reading_exception_done = false;
+            string row;
+            NZHolder holder;
 
-    for (int i = 0; i < thread_count; i++)
-    {
-        pthread_join(threads[i], NULL);
-    }
+            getline(input_file, row);
+            stringstream temp_stream(row);
+            int r;int c;double v;
+            temp_stream >> r >> c;
+            if (!(temp_stream >> v))
+                v = 1.0;
+            holder.set(r,c,v);
+            valid_Matrix.push_back(holder);        
+        }
+        input_file.close();
+        
+        pthread_t* threads = new pthread_t[thread_count[thr]];
+        per_thread = (int)ceil((NZ)/thread_count[thr]);
 
-    getOutput();
-    valid_Matrix.clear();
-    delete[]threads;
+        struct timespec t_start, t_end;
+        clock_gettime(CLOCK_MONOTONIC, &t_start);    
+
+        for(int i=0;i<thread_count[thr];i++)
+        {
+            int* ind = new int;
+            *ind = i;
+            pthread_create(threads+i, NULL, calculate, ind);
+            cpu_set_t cpuset;
+            CPU_ZERO(&cpuset);
+            CPU_SET(i%no_of_cores, &cpuset);
+            pthread_setaffinity_np(threads[i], sizeof(cpu_set_t), &cpuset);        
+        }
+
+        for (int i = 0; i < thread_count[thr]; i++)
+        {
+            pthread_join(threads[i], NULL);
+        }
+
+        clock_gettime(CLOCK_MONOTONIC, &t_end);
+        double elapsed_ms =
+        (t_end.tv_sec - t_start.tv_sec) * 1000.0 +
+        (t_end.tv_nsec - t_start.tv_nsec) / 1e6;
+
+        getOutput(thr,elapsed_ms);
+        valid_Matrix.clear();
+        delete[]threads;
+    }
     return 0;
 }
