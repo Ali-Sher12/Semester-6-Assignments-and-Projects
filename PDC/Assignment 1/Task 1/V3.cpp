@@ -121,7 +121,7 @@ int main()
         point_list.push_back(holder);        
     }
     input_file.close();
-    cout<<"\n------------------------\n\tV2\n------------------------\n";
+    cout<<"\n------------------------\n\tV3\n------------------------\n";
     for (int thr = 0; thr < 4; thr++ )    
     {
         cout<<"This is not printing, even though V2 is printing. Getting segmentation fault error.";
