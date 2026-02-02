@@ -81,7 +81,7 @@ int main()
         
         input_file.close();
 
-    cout<<"\n------------------------\n\tV2\n------------------------\n";
+    cout<<"\n------------------------\n\tV3\n------------------------\n";
     for (int dat_count = 0; dat_count < 3; dat_count++ )
     {    
         for( int thr = 0; thr < 4; thr++ )
