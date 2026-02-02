@@ -4,29 +4,23 @@ jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/A
 	V1
 ------------------------
 
-310553<--
-
 Threads Used: 1
 Percentage of data: 10%
 ChunkSize: Complete
 M: 1000005
 N: 1000005
-NZ: 310553
+NZ: 3105536
 CheckSum: 22499.2
-Elapsed Time: 2.62857ms
-
-1552768<--
+Elapsed Time: 4.1006ms
 
 Threads Used: 1
 Percentage of data: 50%
 ChunkSize: Complete
 M: 1000005
 N: 1000005
-NZ: 1552768
-CheckSum: 197567
-Elapsed Time: 10.7887ms
-
-3105536<--
+NZ: 3105536
+CheckSum: 197568
+Elapsed Time: 20.5353ms
 
 Threads Used: 1
 Percentage of data: 100%
@@ -35,36 +29,30 @@ M: 1000005
 N: 1000005
 NZ: 3105536
 CheckSum: 499501
-Elapsed Time: 23.8228ms
+Elapsed Time: 40.7898ms
 jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ g++ V1.cpp -o main && ./main
 
 ------------------------
 	V1
 ------------------------
 
-310553<--
-
 Threads Used: 1
 Percentage of data: 10%
 ChunkSize: Complete
 M: 1000005
 N: 1000005
-NZ: 310553
-CheckSum: 22499.2
-Elapsed Time: 2.11664ms
-
-1552768<--
+NZ: 3105536
+CheckSum: 22498.6
+Elapsed Time: 3.10701ms
 
 Threads Used: 1
 Percentage of data: 50%
 ChunkSize: Complete
 M: 1000005
 N: 1000005
-NZ: 1552768
+NZ: 3105536
 CheckSum: 197567
-Elapsed Time: 10.3615ms
-
-3105536<--
+Elapsed Time: 16.3395ms
 
 Threads Used: 1
 Percentage of data: 100%
@@ -72,37 +60,31 @@ ChunkSize: Complete
 M: 1000005
 N: 1000005
 NZ: 3105536
-CheckSum: 499501
-Elapsed Time: 20.1268ms
+CheckSum: 499500
+Elapsed Time: 32.0864ms
 jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ g++ V1.cpp -o main && ./main
 
 ------------------------
 	V1
 ------------------------
 
-310553<--
-
 Threads Used: 1
 Percentage of data: 10%
 ChunkSize: Complete
 M: 1000005
 N: 1000005
-NZ: 310553
+NZ: 3105536
 CheckSum: 22498.5
-Elapsed Time: 2.04625ms
-
-1552768<--
+Elapsed Time: 3.05727ms
 
 Threads Used: 1
 Percentage of data: 50%
 ChunkSize: Complete
 M: 1000005
 N: 1000005
-NZ: 1552768
+NZ: 3105536
 CheckSum: 197567
-Elapsed Time: 14.0974ms
-
-3105536<--
+Elapsed Time: 14.864ms
 
 Threads Used: 1
 Percentage of data: 100%
@@ -110,6 +92,8 @@ ChunkSize: Complete
 M: 1000005
 N: 1000005
 NZ: 3105536
-CheckSum: 499501
-Elapsed Time: 20.4853ms
+CheckSum: 499500
+Elapsed Time: 30.9953ms
+jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ 
+
 

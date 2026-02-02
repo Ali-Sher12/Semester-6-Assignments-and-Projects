@@ -3,174 +3,156 @@ jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/A
 ------------------------
 	V3
 ------------------------
-
-500000<--
-
+issue not in thread creation
 Threads Used: 1
 Percentage of data: 10%
 ChunkSize: 500000
 Total Records: 500000
-PRED_POS : 327962
-TP : 180554
-FP : 147408
-TN : 124090
-FN : 47948
+PRED_POS : 655924
+TP : 361108
+FP : 294816
+TN : 248180
+FN : 95896
 
-Elapsed Time: 128.444ms
-
-2500000<--
-
+Elapsed Time: 58.6475ms
+issue not in thread creation
 Threads Used: 1
 Percentage of data: 50%
-ChunkSize: 3000000
-Total Records: 3000000
-PRED_POS : 1969029
-TP : 1086039
-FP : 882990
-TN : 744664
-FN : 286307
+ChunkSize: 2500000
+Total Records: 2500000
+PRED_POS : 3282134
+TP : 1810970
+FP : 1471164
+TN : 1241148
+FN : 476718
 
-Elapsed Time: 730.012ms
-
+Elapsed Time: 301.842ms
+issue not in thread creation
 Threads Used: 1
 Percentage of data: 100%
-ChunkSize: 8000000
-Total Records: 8000000
-PRED_POS : 5251741
-TP : 2896954
-FP : 2354787
-TN : 1985040
-FN : 763219
+ChunkSize: 5000001
+Total Records: 5000001
+PRED_POS : 6565424
+TP : 3621830
+FP : 2943594
+TN : 2480754
+FN : 953824
 
-Elapsed Time: 1921.57ms
-
-500000<--
-
+Elapsed Time: 726.234ms
+issue not in thread creation
 Threads Used: 2
 Percentage of data: 10%
-ChunkSize: 4250000
-Total Records: 8500000
-PRED_POS : 5579703
-TP : 3077508
-FP : 2502195
-TN : 2109130
-FN : 811167
+ChunkSize: 250000
+Total Records: 500000
+PRED_POS : 491888
+TP : 270731
+FP : 221157
+TN : 186236
+FN : 71876
 
-Elapsed Time: 1073ms
-
-2500000<--
-
+Elapsed Time: 47.4996ms
+issue not in thread creation
 Threads Used: 2
 Percentage of data: 50%
-ChunkSize: 5500000
-Total Records: 11000000
-PRED_POS : 7220770
-TP : 3982993
-FP : 3237777
-TN : 2729704
-FN : 1049526
+ChunkSize: 1250000
+Total Records: 2500000
+PRED_POS : 1805103
+TP : 995862
+FP : 809241
+TN : 682518
+FN : 262379
 
-Elapsed Time: 944.848ms
-
+Elapsed Time: 162.628ms
+issue not in thread creation
 Threads Used: 2
 Percentage of data: 100%
-ChunkSize: 8000000
-Total Records: 16000000
-PRED_POS : 10503482
-TP : 5793908
-FP : 4709574
-TN : 3970080
-FN : 1526438
+ChunkSize: 2500000
+Total Records: 5000001
+PRED_POS : 4923779
+TP : 2716400
+FP : 2207379
+TN : 1860950
+FN : 715271
 
-Elapsed Time: 1591.49ms
-
-500000<--
-
+Elapsed Time: 435.639ms
+issue not in thread creation
 Threads Used: 4
 Percentage of data: 10%
-ChunkSize: 4125000
-Total Records: 16500000
-PRED_POS : 10831444
-TP : 5974462
-FP : 4856982
-TN : 4094170
-FN : 1574386
+ChunkSize: 125000
+Total Records: 500000
+PRED_POS : 2215668
+TP : 1221472
+FP : 994196
+TN : 836884
+FN : 322448
 
-Elapsed Time: 1036.63ms
-
-2500000<--
-
+Elapsed Time: 40.2769ms
+issue not in thread creation
 Threads Used: 4
 Percentage of data: 50%
-ChunkSize: 4750000
-Total Records: 19000000
-PRED_POS : 12472511
-TP : 6879947
-FP : 5592564
-TN : 4714744
-FN : 1812745
+ChunkSize: 625000
+Total Records: 2500000
+PRED_POS : 4594374
+TP : 2535185
+FP : 2059189
+TN : 1737997
+FN : 667629
 
-Elapsed Time: 1175.28ms
-
+Elapsed Time: 179.452ms
+issue not in thread creation
 Threads Used: 4
 Percentage of data: 100%
-ChunkSize: 6000000
-Total Records: 24000000
-PRED_POS : 15755223
-TP : 8690862
-FP : 7064361
-TN : 5955120
-FN : 2289657
+ChunkSize: 1250000
+Total Records: 5000001
+PRED_POS : 6155400
+TP : 3395301
+FP : 2760099
+TN : 2325415
+FN : 894185
 
-Elapsed Time: 1477.13ms
-
-500000<--
-
+Elapsed Time: 292.637ms
+issue not in thread creation
 Threads Used: 8
 Percentage of data: 10%
-ChunkSize: 3062500
-Total Records: 24500000
-PRED_POS : 16083185
-TP : 8871416
-FP : 7211769
-TN : 6079210
-FN : 2337605
+ChunkSize: 62500
+Total Records: 500000
+PRED_POS : 615010
+TP : 338612
+FP : 276398
+TN : 232635
+FN : 89855
 
-Elapsed Time: 1050.46ms
-
-2500000<--
-
+Elapsed Time: 30.2746ms
+issue not in thread creation
 Threads Used: 8
 Percentage of data: 50%
-ChunkSize: 3375000
-Total Records: 27000000
-PRED_POS : 17724252
-TP : 9776901
-FP : 7947351
-TN : 6699784
-FN : 2575964
+ChunkSize: 312500
+Total Records: 2500000
+PRED_POS : 3528435
+TP : 1946584
+FP : 1581851
+TN : 1333928
+FN : 512637
 
-Elapsed Time: 1204.22ms
-
+Elapsed Time: 153.231ms
+issue not in thread creation
 Threads Used: 8
 Percentage of data: 100%
-ChunkSize: 4000000
-Total Records: 32000000
-PRED_POS : 21006964
-TP : 11587816
-FP : 9419148
-TN : 7940160
-FN : 3052876
+ChunkSize: 625000
+Total Records: 5000001
+PRED_POS : 7180789
+TP : 3961577
+FP : 3219212
+TN : 2713677
+FN : 1043034
 
-Elapsed Time: 1267.41ms
+Elapsed Time: 297.149ms
 jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 1$ g++ V3.cpp -o main && ./main
 
 ------------------------
 	V3
 ------------------------
-
-500000<--
-
+issue not in thread creation
 Threads Used: 1
 Percentage of data: 10%
 ChunkSize: 500000
@@ -181,318 +163,288 @@ FP : 147408
 TN : 124090
 FN : 47948
 
-Elapsed Time: 107.083ms
-
-2500000<--
-
+Elapsed Time: 61.076ms
+issue not in thread creation
 Threads Used: 1
 Percentage of data: 50%
-ChunkSize: 3000000
-Total Records: 3000000
-PRED_POS : 1969029
-TP : 1086039
-FP : 882990
-TN : 744664
-FN : 286307
+ChunkSize: 2500000
+Total Records: 2500000
+PRED_POS : 3610096
+TP : 1991524
+FP : 1618572
+TN : 1365238
+FN : 524666
 
-Elapsed Time: 535.531ms
-
+Elapsed Time: 450.511ms
+issue not in thread creation
 Threads Used: 1
 Percentage of data: 100%
-ChunkSize: 8000000
-Total Records: 8000000
-PRED_POS : 5251741
-TP : 2896954
-FP : 2354787
-TN : 1985040
-FN : 763219
+ChunkSize: 5000001
+Total Records: 5000001
+PRED_POS : 6565424
+TP : 3621830
+FP : 2943594
+TN : 2480754
+FN : 953824
 
-Elapsed Time: 1399.14ms
-
-500000<--
-
+Elapsed Time: 581.214ms
+issue not in thread creation
 Threads Used: 2
 Percentage of data: 10%
-ChunkSize: 4250000
-Total Records: 8500000
-PRED_POS : 5579703
-TP : 3077508
-FP : 2502195
-TN : 2109130
-FN : 811167
+ChunkSize: 250000
+Total Records: 500000
+PRED_POS : 655924
+TP : 361108
+FP : 294816
+TN : 248180
+FN : 95896
 
-Elapsed Time: 1031.04ms
-
-2500000<--
-
+Elapsed Time: 46.8193ms
+issue not in thread creation
 Threads Used: 2
 Percentage of data: 50%
-ChunkSize: 5500000
-Total Records: 11000000
-PRED_POS : 7220770
-TP : 3982993
-FP : 3237777
-TN : 2729704
-FN : 1049526
+ChunkSize: 1250000
+Total Records: 2500000
+PRED_POS : 3282134
+TP : 1810970
+FP : 1471164
+TN : 1241148
+FN : 476718
 
-Elapsed Time: 1334.42ms
-
+Elapsed Time: 235.4ms
+issue not in thread creation
 Threads Used: 2
 Percentage of data: 100%
-ChunkSize: 8000000
-Total Records: 16000000
-PRED_POS : 10503482
-TP : 5793908
-FP : 4709574
-TN : 3970080
-FN : 1526438
+ChunkSize: 2500000
+Total Records: 5000001
+PRED_POS : 6565424
+TP : 3621830
+FP : 2943594
+TN : 2480752
+FN : 953824
 
-Elapsed Time: 1578.77ms
-
-500000<--
-
+Elapsed Time: 469.191ms
+issue not in thread creation
 Threads Used: 4
 Percentage of data: 10%
-ChunkSize: 4125000
-Total Records: 16500000
-PRED_POS : 10831444
-TP : 5974462
-FP : 4856982
-TN : 4094170
-FN : 1574386
+ChunkSize: 125000
+Total Records: 500000
+PRED_POS : 655924
+TP : 361108
+FP : 294816
+TN : 248180
+FN : 95896
 
-Elapsed Time: 977.504ms
-
-2500000<--
-
+Elapsed Time: 32.7325ms
+issue not in thread creation
 Threads Used: 4
 Percentage of data: 50%
-ChunkSize: 4750000
-Total Records: 19000000
-PRED_POS : 12472511
-TP : 6879947
-FP : 5592564
-TN : 4714744
-FN : 1812745
+ChunkSize: 625000
+Total Records: 2500000
+PRED_POS : 2871841
+TP : 1584319
+FP : 1287522
+TN : 1086000
+FN : 417159
 
-Elapsed Time: 1123.22ms
-
+Elapsed Time: 180.798ms
+issue not in thread creation
 Threads Used: 4
 Percentage of data: 100%
-ChunkSize: 6000000
-Total Records: 24000000
-PRED_POS : 15755223
-TP : 8690862
-FP : 7064361
-TN : 5955120
-FN : 2289657
+ChunkSize: 1250000
+Total Records: 5000001
+PRED_POS : 6975717
+TP : 3848481
+FP : 3127236
+TN : 2635900
+FN : 1013383
 
-Elapsed Time: 1457.9ms
-
-500000<--
-
+Elapsed Time: 368.139ms
+issue not in thread creation
 Threads Used: 8
 Percentage of data: 10%
-ChunkSize: 3062500
-Total Records: 24500000
-PRED_POS : 16083185
-TP : 8871416
-FP : 7211769
-TN : 6079210
-FN : 2337605
+ChunkSize: 62500
+Total Records: 500000
+PRED_POS : 655924
+TP : 361108
+FP : 294816
+TN : 248180
+FN : 95896
 
-Elapsed Time: 737.455ms
-
-2500000<--
-
+Elapsed Time: 33.5215ms
+issue not in thread creation
 Threads Used: 8
 Percentage of data: 50%
-ChunkSize: 3375000
-Total Records: 27000000
-PRED_POS : 17724252
-TP : 9776901
-FP : 7947351
-TN : 6699784
-FN : 2575964
+ChunkSize: 312500
+Total Records: 2500000
+PRED_POS : 2871406
+TP : 1584634
+FP : 1286772
+TN : 1086325
+FN : 417269
 
-Elapsed Time: 818.605ms
-
+Elapsed Time: 152.091ms
+issue not in thread creation
 Threads Used: 8
 Percentage of data: 100%
-ChunkSize: 4000000
-Total Records: 32000000
-PRED_POS : 21006964
-TP : 11587816
-FP : 9419148
-TN : 7940160
-FN : 3052876
+ChunkSize: 625000
+Total Records: 5000001
+PRED_POS : 6976152
+TP : 3848166
+FP : 3127986
+TN : 2635575
+FN : 1013273
 
-Elapsed Time: 932.549ms
+Elapsed Time: 317.047ms
 jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 1$ g++ V3.cpp -o main && ./main
 
 ------------------------
 	V3
 ------------------------
-
-500000<--
-
+issue not in thread creation
 Threads Used: 1
 Percentage of data: 10%
 ChunkSize: 500000
 Total Records: 500000
-PRED_POS : 327962
-TP : 180554
-FP : 147408
-TN : 124090
-FN : 47948
+PRED_POS : 655924
+TP : 361108
+FP : 294816
+TN : 248180
+FN : 95896
 
-Elapsed Time: 69.552ms
-
-2500000<--
-
+Elapsed Time: 53.4688ms
+issue not in thread creation
 Threads Used: 1
 Percentage of data: 50%
-ChunkSize: 3000000
-Total Records: 3000000
-PRED_POS : 1969029
-TP : 1086039
-FP : 882990
-TN : 744664
-FN : 286307
+ChunkSize: 2500000
+Total Records: 2500000
+PRED_POS : 3282134
+TP : 1810970
+FP : 1471164
+TN : 1241148
+FN : 476718
 
-Elapsed Time: 302.265ms
-
+Elapsed Time: 262.076ms
+issue not in thread creation
 Threads Used: 1
 Percentage of data: 100%
-ChunkSize: 8000000
-Total Records: 8000000
-PRED_POS : 5251741
-TP : 2896954
-FP : 2354787
-TN : 1985040
-FN : 763219
+ChunkSize: 5000001
+Total Records: 5000001
+PRED_POS : 6565424
+TP : 3621830
+FP : 2943594
+TN : 2480754
+FN : 953824
 
-Elapsed Time: 1037.07ms
-
-500000<--
-
+Elapsed Time: 545.123ms
+issue not in thread creation
 Threads Used: 2
 Percentage of data: 10%
-ChunkSize: 4250000
-Total Records: 8500000
-PRED_POS : 5579703
-TP : 3077508
-FP : 2502195
-TN : 2109130
-FN : 811167
+ChunkSize: 250000
+Total Records: 500000
+PRED_POS : 655924
+TP : 361108
+FP : 294816
+TN : 248180
+FN : 95896
 
-Elapsed Time: 718.634ms
-
-2500000<--
-
+Elapsed Time: 46.3967ms
+issue not in thread creation
 Threads Used: 2
 Percentage of data: 50%
-ChunkSize: 5500000
-Total Records: 11000000
-PRED_POS : 7220770
-TP : 3982993
-FP : 3237777
-TN : 2729704
-FN : 1049526
+ChunkSize: 1250000
+Total Records: 2500000
+PRED_POS : 3282134
+TP : 1810970
+FP : 1471164
+TN : 1241148
+FN : 476718
 
-Elapsed Time: 930.273ms
-
+Elapsed Time: 239.454ms
+issue not in thread creation
 Threads Used: 2
 Percentage of data: 100%
-ChunkSize: 8000000
-Total Records: 16000000
-PRED_POS : 10503482
-TP : 5793908
-FP : 4709574
-TN : 3970080
-FN : 1526438
+ChunkSize: 2500000
+Total Records: 5000001
+PRED_POS : 6565424
+TP : 3621830
+FP : 2943594
+TN : 2480752
+FN : 953824
 
-Elapsed Time: 1015.58ms
-
-500000<--
-
+Elapsed Time: 355.9ms
+issue not in thread creation
 Threads Used: 4
 Percentage of data: 10%
-ChunkSize: 4125000
-Total Records: 16500000
-PRED_POS : 10831444
-TP : 5974462
-FP : 4856982
-TN : 4094170
-FN : 1574386
+ChunkSize: 125000
+Total Records: 500000
+PRED_POS : 573889
+TP : 315883
+FP : 258006
+TN : 217167
+FN : 83944
 
-Elapsed Time: 840.858ms
-
-2500000<--
-
+Elapsed Time: 37.6643ms
+issue not in thread creation
 Threads Used: 4
 Percentage of data: 50%
-ChunkSize: 4750000
-Total Records: 19000000
-PRED_POS : 12472511
-TP : 6879947
-FP : 5592564
-TN : 4714744
-FN : 1812745
+ChunkSize: 625000
+Total Records: 2500000
+PRED_POS : 2133395
+TP : 1177361
+FP : 956034
+TN : 806735
+FN : 309870
 
-Elapsed Time: 942.661ms
-
+Elapsed Time: 152.129ms
+issue not in thread creation
 Threads Used: 4
 Percentage of data: 100%
-ChunkSize: 6000000
-Total Records: 24000000
-PRED_POS : 15755223
-TP : 8690862
-FP : 7064361
-TN : 5955120
-FN : 2289657
+ChunkSize: 1250000
+Total Records: 5000001
+PRED_POS : 5334238
+TP : 2942614
+FP : 2391624
+TN : 2015962
+FN : 774800
 
-Elapsed Time: 1194.1ms
-
-500000<--
-
+Elapsed Time: 304.407ms
+issue not in thread creation
 Threads Used: 8
 Percentage of data: 10%
-ChunkSize: 3062500
-Total Records: 24500000
-PRED_POS : 16083185
-TP : 8871416
-FP : 7211769
-TN : 6079210
-FN : 2337605
+ChunkSize: 62500
+Total Records: 500000
+PRED_POS : 1435776
+TP : 791505
+FP : 644271
+TN : 542652
+FN : 209072
 
-Elapsed Time: 838.955ms
-
-2500000<--
-
+Elapsed Time: 45.9612ms
+issue not in thread creation
 Threads Used: 8
 Percentage of data: 50%
-ChunkSize: 3375000
-Total Records: 27000000
-PRED_POS : 17724252
-TP : 9776901
-FP : 7947351
-TN : 6699784
-FN : 2575964
+ChunkSize: 312500
+Total Records: 2500000
+PRED_POS : 4553841
+TP : 2512272
+FP : 2041569
+TN : 1721867
+FN : 661792
 
-Elapsed Time: 962.673ms
-
+Elapsed Time: 191.981ms
+issue not in thread creation
 Threads Used: 8
 Percentage of data: 100%
-ChunkSize: 4000000
-Total Records: 32000000
-PRED_POS : 21006964
-TP : 11587816
-FP : 9419148
-TN : 7940160
-FN : 3052876
+ChunkSize: 625000
+Total Records: 5000001
+PRED_POS : 6975825
+TP : 3848181
+FP : 3127644
+TN : 2635777
+FN : 1013398
 
-Elapsed Time: 877.417ms
+Elapsed Time: 332.483ms
 jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 1$ 
 
 

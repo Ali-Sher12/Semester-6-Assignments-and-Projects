@@ -1,10 +1,8 @@
-jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ g++ V2.cpp -o main && ./main
+arvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ g++ V2.cpp -o main && ./main
 
 ------------------------
 	V2
 ------------------------
-
-310553<--
 
 Threads Used: 1
 Percentage of data: 10%
@@ -12,10 +10,8 @@ ChunkSize: 310553 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 310553
-CheckSum: 22498.7
-Elapsed Time: 2.49699ms
-
-310553<--
+CheckSum: 22499.2
+Elapsed Time: 3.33506ms
 
 Threads Used: 2
 Percentage of data: 10%
@@ -23,10 +19,8 @@ ChunkSize: 155276 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 310553
-CheckSum: 22498.7
-Elapsed Time: 1.3104ms
-
-310553<--
+CheckSum: 22499.2
+Elapsed Time: 1.69044ms
 
 Threads Used: 4
 Percentage of data: 10%
@@ -34,10 +28,8 @@ ChunkSize: 77638 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 310553
-CheckSum: 22498.7
-Elapsed Time: 1.36804ms
-
-310553<--
+CheckSum: 22499.2
+Elapsed Time: 1.65668ms
 
 Threads Used: 8
 Percentage of data: 10%
@@ -45,10 +37,8 @@ ChunkSize: 38819 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 310553
-CheckSum: 22498.7
-Elapsed Time: 1.10286ms
-
-1552768<--
+CheckSum: 22499.2
+Elapsed Time: 1.41323ms
 
 Threads Used: 1
 Percentage of data: 50%
@@ -56,10 +46,8 @@ ChunkSize: 1552768 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 1552768
-CheckSum: 197567
-Elapsed Time: 10.5317ms
-
-1552768<--
+CheckSum: 197568
+Elapsed Time: 15.7933ms
 
 Threads Used: 2
 Percentage of data: 50%
@@ -68,9 +56,7 @@ M: 1000005
 N: 1000005
 NZ: 1552768
 CheckSum: 197568
-Elapsed Time: 5.29091ms
-
-1552768<--
+Elapsed Time: 8.2033ms
 
 Threads Used: 4
 Percentage of data: 50%
@@ -79,9 +65,7 @@ M: 1000005
 N: 1000005
 NZ: 1552768
 CheckSum: 197568
-Elapsed Time: 4.062ms
-
-1552768<--
+Elapsed Time: 8.01431ms
 
 Threads Used: 8
 Percentage of data: 50%
@@ -90,9 +74,7 @@ M: 1000005
 N: 1000005
 NZ: 1552768
 CheckSum: 197568
-Elapsed Time: 4.40425ms
-
-3105536<--
+Elapsed Time: 7.02348ms
 
 Threads Used: 1
 Percentage of data: 100%
@@ -101,9 +83,7 @@ M: 1000005
 N: 1000005
 NZ: 3105536
 CheckSum: 499501
-Elapsed Time: 20.1534ms
-
-3105536<--
+Elapsed Time: 32.0613ms
 
 Threads Used: 2
 Percentage of data: 100%
@@ -111,10 +91,8 @@ ChunkSize: 1552768 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 3105536
-CheckSum: 499500
-Elapsed Time: 10.888ms
-
-3105536<--
+CheckSum: 499501
+Elapsed Time: 16.5514ms
 
 Threads Used: 4
 Percentage of data: 100%
@@ -122,10 +100,8 @@ ChunkSize: 776384 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 3105536
-CheckSum: 499500
-Elapsed Time: 6.91556ms
-
-3105536<--
+CheckSum: 499501
+Elapsed Time: 16.0291ms
 
 Threads Used: 8
 Percentage of data: 100%
@@ -133,15 +109,13 @@ ChunkSize: 388192 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 3105536
-CheckSum: 499500
-Elapsed Time: 7.50844ms
+CheckSum: 499501
+Elapsed Time: 11.5694ms
 jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ g++ V2.cpp -o main && ./main
 
 ------------------------
 	V2
 ------------------------
-
-310553<--
 
 Threads Used: 1
 Percentage of data: 10%
@@ -149,10 +123,8 @@ ChunkSize: 310553 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 310553
-CheckSum: 22498.2
-Elapsed Time: 2.47946ms
-
-310553<--
+CheckSum: 22499.2
+Elapsed Time: 3.50889ms
 
 Threads Used: 2
 Percentage of data: 10%
@@ -160,10 +132,8 @@ ChunkSize: 155276 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 310553
-CheckSum: 22498.7
-Elapsed Time: 1.41505ms
-
-310553<--
+CheckSum: 22499.2
+Elapsed Time: 1.77791ms
 
 Threads Used: 4
 Percentage of data: 10%
@@ -171,10 +141,8 @@ ChunkSize: 77638 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 310553
-CheckSum: 22498.7
-Elapsed Time: 1.3572ms
-
-310553<--
+CheckSum: 22499.2
+Elapsed Time: 1.88489ms
 
 Threads Used: 8
 Percentage of data: 10%
@@ -182,10 +150,8 @@ ChunkSize: 38819 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 310553
-CheckSum: 22498.7
-Elapsed Time: 1.11849ms
-
-1552768<--
+CheckSum: 22499.2
+Elapsed Time: 1.49456ms
 
 Threads Used: 1
 Percentage of data: 50%
@@ -193,10 +159,8 @@ ChunkSize: 1552768 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 1552768
-CheckSum: 197567
-Elapsed Time: 10.1675ms
-
-1552768<--
+CheckSum: 197568
+Elapsed Time: 16.4308ms
 
 Threads Used: 2
 Percentage of data: 50%
@@ -205,9 +169,7 @@ M: 1000005
 N: 1000005
 NZ: 1552768
 CheckSum: 197568
-Elapsed Time: 5.27675ms
-
-1552768<--
+Elapsed Time: 8.20138ms
 
 Threads Used: 4
 Percentage of data: 50%
@@ -216,9 +178,7 @@ M: 1000005
 N: 1000005
 NZ: 1552768
 CheckSum: 197568
-Elapsed Time: 5.21669ms
-
-1552768<--
+Elapsed Time: 4.1249ms
 
 Threads Used: 8
 Percentage of data: 50%
@@ -227,9 +187,7 @@ M: 1000005
 N: 1000005
 NZ: 1552768
 CheckSum: 197568
-Elapsed Time: 4.55829ms
-
-3105536<--
+Elapsed Time: 5.45358ms
 
 Threads Used: 1
 Percentage of data: 100%
@@ -238,9 +196,7 @@ M: 1000005
 N: 1000005
 NZ: 3105536
 CheckSum: 499501
-Elapsed Time: 20.4752ms
-
-3105536<--
+Elapsed Time: 32.852ms
 
 Threads Used: 2
 Percentage of data: 100%
@@ -248,10 +204,8 @@ ChunkSize: 1552768 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 3105536
-CheckSum: 499500
-Elapsed Time: 10.5628ms
-
-3105536<--
+CheckSum: 499501
+Elapsed Time: 16.2526ms
 
 Threads Used: 4
 Percentage of data: 100%
@@ -259,10 +213,8 @@ ChunkSize: 776384 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 3105536
-CheckSum: 499500
-Elapsed Time: 7.22783ms
-
-3105536<--
+CheckSum: 499501
+Elapsed Time: 8.43245ms
 
 Threads Used: 8
 Percentage of data: 100%
@@ -270,15 +222,13 @@ ChunkSize: 388192 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 3105536
-CheckSum: 499500
-Elapsed Time: 7.23412ms
+CheckSum: 499501
+Elapsed Time: 10.3372ms
 jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ g++ V2.cpp -o main && ./main
 
 ------------------------
 	V2
 ------------------------
-
-310553<--
 
 Threads Used: 1
 Percentage of data: 10%
@@ -286,10 +236,8 @@ ChunkSize: 310553 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 310553
-CheckSum: 22498.5
-Elapsed Time: 2.35038ms
-
-310553<--
+CheckSum: 22499.2
+Elapsed Time: 3.53936ms
 
 Threads Used: 2
 Percentage of data: 10%
@@ -297,10 +245,8 @@ ChunkSize: 155276 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 310553
-CheckSum: 22498.7
-Elapsed Time: 1.31407ms
-
-310553<--
+CheckSum: 22499.2
+Elapsed Time: 2.75922ms
 
 Threads Used: 4
 Percentage of data: 10%
@@ -308,10 +254,8 @@ ChunkSize: 77638 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 310553
-CheckSum: 22498.7
-Elapsed Time: 1.34287ms
-
-310553<--
+CheckSum: 22499.2
+Elapsed Time: 1.72451ms
 
 Threads Used: 8
 Percentage of data: 10%
@@ -319,10 +263,8 @@ ChunkSize: 38819 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 310553
-CheckSum: 22498.7
-Elapsed Time: 1.00491ms
-
-1552768<--
+CheckSum: 22499.2
+Elapsed Time: 1.58476ms
 
 Threads Used: 1
 Percentage of data: 50%
@@ -330,10 +272,8 @@ ChunkSize: 1552768 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 1552768
-CheckSum: 197567
-Elapsed Time: 30.2376ms
-
-1552768<--
+CheckSum: 197568
+Elapsed Time: 16.8407ms
 
 Threads Used: 2
 Percentage of data: 50%
@@ -342,9 +282,7 @@ M: 1000005
 N: 1000005
 NZ: 1552768
 CheckSum: 197568
-Elapsed Time: 5.12251ms
-
-1552768<--
+Elapsed Time: 8.30649ms
 
 Threads Used: 4
 Percentage of data: 50%
@@ -353,9 +291,7 @@ M: 1000005
 N: 1000005
 NZ: 1552768
 CheckSum: 197568
-Elapsed Time: 5.30654ms
-
-1552768<--
+Elapsed Time: 8.02707ms
 
 Threads Used: 8
 Percentage of data: 50%
@@ -364,9 +300,7 @@ M: 1000005
 N: 1000005
 NZ: 1552768
 CheckSum: 197568
-Elapsed Time: 3.52645ms
-
-3105536<--
+Elapsed Time: 5.16841ms
 
 Threads Used: 1
 Percentage of data: 100%
@@ -375,9 +309,7 @@ M: 1000005
 N: 1000005
 NZ: 3105536
 CheckSum: 499501
-Elapsed Time: 20.5362ms
-
-3105536<--
+Elapsed Time: 31.6643ms
 
 Threads Used: 2
 Percentage of data: 100%
@@ -385,10 +317,8 @@ ChunkSize: 1552768 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 3105536
-CheckSum: 499500
-Elapsed Time: 11.2727ms
-
-3105536<--
+CheckSum: 499501
+Elapsed Time: 16.9587ms
 
 Threads Used: 4
 Percentage of data: 100%
@@ -396,10 +326,8 @@ ChunkSize: 776384 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 3105536
-CheckSum: 499500
-Elapsed Time: 10.0937ms
-
-3105536<--
+CheckSum: 499501
+Elapsed Time: 15.7708ms
 
 Threads Used: 8
 Percentage of data: 100%
@@ -407,8 +335,8 @@ ChunkSize: 388192 elements processed per chunk.
 M: 1000005
 N: 1000005
 NZ: 3105536
-CheckSum: 499500
-Elapsed Time: 7.24296ms
+CheckSum: 499501
+Elapsed Time: 12.7466ms
 jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 2$ 
 
 
