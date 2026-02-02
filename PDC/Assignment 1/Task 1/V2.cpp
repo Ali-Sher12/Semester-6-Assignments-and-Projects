@@ -122,7 +122,6 @@ int main()
     cout<<"\n------------------------\n\tV2\n------------------------\n";
     for (int thr = 0; thr < 4; thr++ )    
     {
-        cout<<"This is not printing, even though V2 is printing. Getting segmentation fault error.";
         for (int dat_count = 0; dat_count < 3; dat_count++ )
         {
             PRED_POS = 0,TP = 0,FP = 0,TN = 0,FN = 0;
