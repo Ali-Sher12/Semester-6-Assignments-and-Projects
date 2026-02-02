@@ -17,6 +17,7 @@ struct NZHolder
     }
 };
 
+int size_data_percentage = 0;
 int dat_percentage[3] = {10,50,100};
 double checkSum = 0;
 int M = 0,N = 0,NZ = 0;
@@ -25,7 +26,7 @@ vector<NZHolder> valid_Matrix;
 void calculate()
 {   //I had to flatten it for the other versions
     
-    for(int i=0;i<NZ;i++)
+    for(int i=0;i<size_data_percentage;i++)
     {
         checkSum += (valid_Matrix[i].val * ((valid_Matrix[i].c+1)%1000)/1000);
     }        
@@ -45,18 +46,12 @@ void getOutput(double time,int dat)
 
 int main()
 {
-    cout<<"\n------------------------\n\tV1\n------------------------\n";
-    for (int dat_count = 0; dat_count < 3; dat_count++ )
-    {
-        checkSum = 0;
         ifstream input_file("webbase.mtx");
         // using a the first few rows of the data set during development
         input_file>>M;
         input_file>>N;
         input_file>>NZ;
 
-        dat_percentage[dat_count];
-        int NZ_dat_counter = 0;
         while(!input_file.eof())
         {
             bool data_reading_exception_done = false;
@@ -71,18 +66,16 @@ int main()
             v = 1.0;
             holder.set(r,c,v);
             valid_Matrix.push_back(holder); 
-            
-            NZ_dat_counter++;       
-            if(NZ_dat_counter >= (NZ*dat_percentage[dat_count]/100))
-            {
-                NZ = NZ_dat_counter;
-                cout<<"\n"<<NZ_dat_counter<<"<--\n";
-                break;
-            }
         }
         
         input_file.close();
-        
+
+    cout<<"\n------------------------\n\tV1\n------------------------\n";
+    for (int dat_count = 0; dat_count < 3; dat_count++ )
+    {
+
+        size_data_percentage = NZ * dat_percentage[dat_count]/100;
+        checkSum = 0;        
         struct timespec t_start, t_end;
         clock_gettime(CLOCK_MONOTONIC, &t_start);    
         
@@ -94,7 +87,7 @@ int main()
         (t_end.tv_nsec - t_start.tv_nsec) / 1e6;
         
         getOutput(elapsed_ms,dat_count);
-        valid_Matrix.clear();
     }
+    valid_Matrix.clear();
     return 0;
 }

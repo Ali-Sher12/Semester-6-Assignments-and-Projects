@@ -6,6 +6,7 @@
 
 using namespace std;
 
+int point_list_data_percentage = 0;
 int dat_percentage[3] = {10,50,100};
 int PRED_POS = 0,TP = 0,FP = 0,TN = 0,FN = 0;
 float e = 2.71828;
@@ -27,7 +28,7 @@ struct data_
             values[index-1] =  stof(value);
     }
 };
-
+vector<data_> point_list;
 
 void calculate_linear_score_and_prob_and_set_data(data_& dat)
 {// calculates everything and sets the global values
@@ -59,7 +60,7 @@ void getOutput(int N,double time,int dat)
     cout<<"\nThreads Used: 1";    
     cout<<"\nPercentage of data: "<<dat_percentage[dat]<<"%";
     cout<<"\nChunkSize: Complete";    
-    cout<<"\nTotal Records: " << N << "\n";
+    cout<<"\nTotal Records: " << point_list_data_percentage << "\n";
     cout<<"PRED_POS : " << PRED_POS << "\n";
     cout<<"TP : " << TP << "\n";
     cout<<"FP : " << FP << "\n";
@@ -71,52 +72,38 @@ void getOutput(int N,double time,int dat)
 int main()
 {
     int total_num_lines = 5000001;
+    ifstream input_file("susy.csv");
+    string consume;
+    getline(input_file, consume);
+    while(!input_file.eof())
+    {
+        string row;
+        data_ holder;
+        getline(input_file, row);
+        stringstream temp_stream(row);
+        int i = 0;
+        while (!temp_stream.eof())
+        {
+            string word;
+            getline(temp_stream, word, ',');
+            if(word=="")
+                break;
+            holder.setValue(i,word);
+            i++;
+        }
+        point_list.push_back(holder);        
+    }
+    input_file.close();
+
     cout<<"\n------------------------\n\tV1\n------------------------\n";
     for (int dat_count = 0; dat_count < 3; dat_count++ )
     {
         PRED_POS = 0,TP = 0,FP = 0,TN = 0,FN = 0;
-        ifstream input_file("susy.csv");
-        // using a the first few rows of the data set during development
-
-        vector<data_> point_list;
-        string consume;
-        getline(input_file, consume);
-        int data_limit_counter = 0;
-        while(!input_file.eof())
-        {
-            bool data_reading_exception_done = false;
-            string row;
-            data_ holder;
-            getline(input_file, row);
-            stringstream temp_stream(row);
-            int i = 0;
-            while (!temp_stream.eof())
-            {
-                string word;
-                getline(temp_stream, word, ',');
-                if(word=="")
-                {   //This condition is to fix '\n' at the end of the csv
-                    data_reading_exception_done = true;break;       
-                }
-
-                holder.setValue(i,word);
-                i++;
-            }
-            if(data_reading_exception_done) break;
-            point_list.push_back(holder);        
-            data_limit_counter++;       
-            if(data_limit_counter >= (total_num_lines*dat_percentage[dat_count]/100))
-            {
-                cout<<"\n"<<data_limit_counter<<"<--\n";
-                break;
-            }
-        }
-        input_file.close();
-
+        point_list_data_percentage = point_list.size()*dat_percentage[dat_count]/100;
         struct timespec t_start, t_end;
         clock_gettime(CLOCK_MONOTONIC, &t_start);    
 
-        for(int i=0;i<point_list.size();i++)
+        for(int i=0;i<point_list_data_percentage;i++)
         {    
             calculate_linear_score_and_prob_and_set_data(point_list[i]);
         }
