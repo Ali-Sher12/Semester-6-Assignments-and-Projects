@@ -9,11 +9,14 @@ using namespace std;
 
 int data_percentages[3] = {10,50,100};
 
-int nodes, Edges;
+int nodes;
 vector<vector<int>> graph_global;
+
 vector<int> distances;
 queue<int> queue_;
 vector<int> level_count;
+int Edges_total;
+int Edges_usable;
 
 int reachable = 0;
 int max_distance = 0;
@@ -61,35 +64,44 @@ void compute()
 
 }
 
-void getOutput()
+void getOutput(int dat_count)
 {
-    cout << "SOURCE 0\n";
-    cout << "REACHABLE " << reachable << "\n";
-    cout << "MAXDIST " << max_distance << "\n";
+    cout << "\nData Percentage "<<data_percentages[dat_count]<<"%";
+    cout << "\nSource : 0";
+    cout << "\nReachable : " << reachable;
+    cout << "\nMaximum distance : " << max_distance;
     for (int k = 0; k <= max_distance; k++)
-    {
-        cout << k << " " << level_count[k] << "\n";
-    }    
+        cout << "\n" << k << " " << level_count[k];
+    cout << "\n";
 }
 
 
 int main()
 {
     cout<<"\n------------------------\n\tV1\n------------------------\n";
-    ifstream input_file("web.txt");
-    string line;
-    input_file >> nodes >> Edges;
-    int u, v;
-    graph_global.resize(nodes);
-    while (input_file >> u >> v)
+
+    for(int dat_count = 0; dat_count < 3; dat_count++)
     {
-    if (u >= 0 && u < nodes && v >= 0 && v < nodes)
-    // This condition was brought to you by chatGPT
-        graph_global[u].push_back(v);
+        ifstream input_file("web.txt");
+        string line;
+        input_file >> nodes >> Edges_total;
+
+        Edges_usable = Edges_total*data_percentages[dat_count]/100;
+
+        int u, v;
+        graph_global.resize(nodes);
+        for (int i = 0; i < Edges_usable; i++)
+        {
+            input_file >> u >> v;
+            if (u >= 0 && u < nodes && v >= 0 && v < nodes)
+            // This condition was brought to you by chatGPT
+            graph_global[u].push_back(v);
+        }
+        input_file.close();
+
+        compute();
+        getOutput(dat_count);
     }
-    input_file.close();
-    compute();
-    getOutput();
 
     return 0;
 }
