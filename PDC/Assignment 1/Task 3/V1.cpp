@@ -64,9 +64,10 @@ void compute()
 
 }
 
-void getOutput(int dat_count)
+void getOutput(int elapsed_ms,int dat_count)
 {
     cout << "\nData Percentage "<<data_percentages[dat_count]<<"%";
+    cout << "\nTime : " << elapsed_ms;
     cout << "\nSource : 0";
     cout << "\nReachable : " << reachable;
     cout << "\nMaximum distance : " << max_distance;
@@ -99,8 +100,15 @@ int main()
         }
         input_file.close();
 
+        struct timespec t_start, t_end;
+        clock_gettime(CLOCK_MONOTONIC, &t_start);
         compute();
-        getOutput(dat_count);
+        clock_gettime(CLOCK_MONOTONIC, &t_end);
+        double elapsed_ms =
+        (t_end.tv_sec - t_start.tv_sec) * 1000.0 +
+        (t_end.tv_nsec - t_start.tv_nsec) / 1e6;
+
+        getOutput(elapsed_ms,dat_count);
     }
 
     return 0;
