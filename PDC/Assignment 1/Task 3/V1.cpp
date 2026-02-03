@@ -83,6 +83,8 @@ int main()
     graph_global.resize(nodes);
     while (input_file >> u >> v)
     {
+    if (u >= 0 && u < nodes && v >= 0 && v < nodes)
+    // This condition was brought to you by chatGPT
         graph_global[u].push_back(v);
     }
     input_file.close();
