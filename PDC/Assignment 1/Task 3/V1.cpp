@@ -7,72 +7,87 @@
 
 using namespace std;
 
-vector<vector<int>> adj;
-int main()
+int data_percentages[3] = {10,50,100};
+
+int nodes, Edges;
+vector<vector<int>> graph_global;
+vector<int> distances;
+queue<int> queue_;
+vector<int> level_count;
+
+int reachable = 0;
+int max_distance = 0;
+
+void compute()
 {
-    ifstream infile("web.txt");
-    string line;
-    int nodes, Edges;
-    infile >> nodes >> Edges;
-    int u, v;
-    while (infile >> u >> v)
+    //BFS
+    distances.assign(nodes, -1);
+    distances[0] = 0;
+    queue_.push(0);
+    while (!queue_.empty())
     {
-        adj[u].push_back(v);
-    }
-    infile.close();
-    
-    /* ---- BFS from source 0 ---- */
-    vector<int> dist(nodes, -1);
-    queue<int> q;
+        int current_node = queue_.front();
+        queue_.pop();
 
-    dist[0] = 0;
-    q.push(0);
-
-    while (!q.empty())
-    {
-        int curr = q.front();
-        q.pop();
-
-        for (int nxt : adj[curr])
+        for (int i = 0; i < graph_global[current_node].size(); i++)
         {
-            if (nxt >= 0 && nxt < nodes && dist[nxt] == -1)
+            int neighbor = graph_global[current_node][i];
+            if (distances[neighbor] == -1)
             {
-                dist[nxt] = dist[curr] + 1;
-                q.push(nxt);
+                distances[neighbor] = distances[current_node] + 1;
+                queue_.push(neighbor);
             }
         }
     }
 
-    /* ---- Compute statistics ---- */
-    long long reachable = 0;
-    int maxdist = 0;
-
+    //Max distance
     for (int i = 0; i < nodes; i++)
     {
-        if (dist[i] != -1)
+        if (distances[i] != -1)
         {
             reachable++;
-            if (dist[i] > maxdist)
-                maxdist = dist[i];
+            if (distances[i] > max_distance)
+                max_distance = distances[i];
         }
     }
 
-    vector<long long> level_count(maxdist + 1, 0);
+    //Nodes a k distance
+    level_count.assign(max_distance + 1, 0);
     for (int i = 0; i < nodes; i++)
     {
-        if (dist[i] != -1)
-            level_count[dist[i]]++;
+        if (distances[i] != -1)
+            level_count[distances[i]]++;
     }
 
-    /* ---- Output ---- */
+}
+
+void getOutput()
+{
     cout << "SOURCE 0\n";
     cout << "REACHABLE " << reachable << "\n";
-    cout << "MAXDIST " << maxdist << "\n";
-
-    for (int k = 0; k <= maxdist; k++)
+    cout << "MAXDIST " << max_distance << "\n";
+    for (int k = 0; k <= max_distance; k++)
     {
         cout << k << " " << level_count[k] << "\n";
+    }    
+}
+
+
+int main()
+{
+    cout<<"\n------------------------\n\tV1\n------------------------\n";
+    ifstream input_file("web.txt");
+    string line;
+    input_file >> nodes >> Edges;
+    int u, v;
+    graph_global.resize(nodes);
+    while (input_file >> u >> v)
+    {
+        graph_global[u].push_back(v);
     }
+    input_file.close();
+    compute();
+    getOutput();
 
     return 0;
 }
