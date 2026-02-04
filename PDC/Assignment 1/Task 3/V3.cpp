@@ -112,7 +112,7 @@ void getOutput(int elapsed_ms,int dat_count,int thr)
 
 int main()
 {
-    cout<<"\n------------------------\n\tV2\n------------------------\n";
+    cout<<"\n------------------------\n\tV3\n------------------------\n";
 
     for(int dat_count = 0; dat_count < 3; dat_count++)    
     {

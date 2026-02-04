@@ -1,3 +1,4 @@
+Time is in ms. I forgot to add the unit.
 jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/Assignment 1/Task 3$ g++ V1.cpp -o main && ./main
 
 ------------------------
