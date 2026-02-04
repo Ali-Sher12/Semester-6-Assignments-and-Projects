@@ -38,6 +38,7 @@ float weights[19] = { 0.12, -0.07, 0.05, 0.09, -0.11, 0.03, 0.08, -0.02,
 void* calculate_linear_score_and_prob_and_set_data(void* arg)
 {// calculates everything and sets the global values
     int thread_index = *((int*)arg);
+    delete (int*)arg;
     int start = per_thread*thread_index;
     int end_limit = ((per_thread*thread_index+per_thread)>=point_list_data_percentage)?point_list_data_percentage:(per_thread*thread_index+per_thread);
 
