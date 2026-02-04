@@ -99,7 +99,6 @@ int main()
                 int* ind = new int;
                 *ind = i;
                 pthread_create(threads+i, NULL, calculate, ind);
-                pthread_create(threads+i, NULL, calculate, ind);
                 cpu_set_t cpuset;
                 CPU_ZERO(&cpuset);
                 CPU_SET(i%no_of_cores, &cpuset);

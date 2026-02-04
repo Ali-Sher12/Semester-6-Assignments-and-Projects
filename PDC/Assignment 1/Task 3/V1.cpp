@@ -41,7 +41,7 @@ void compute()
                 queue_.push(neighbor);
             }
         }
-    }
+    }//This cannot be parallelised untill there is a queue
 
     //Max distance
     for (int i = 0; i < nodes; i++)

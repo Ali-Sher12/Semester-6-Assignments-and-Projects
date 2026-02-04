@@ -1,173 +1,198 @@
 #include <iostream>
-#include <pthread.h>
-#include <sstream>
 #include <fstream>
-#include <cmath>
+#include <sstream>
 #include <vector>
-#include <stdlib.h>
+#include <pthread.h>
+#include <cmath>
+#include <queue>
 
 using namespace std;
 
-
-struct data_
-{
-    float values[18];
-    float y = 0,y_prime = 0;
-    void setValue(int index,string value)
-    {
-        // way better than writing my own function
-        if( index == 0 )
-            y = stof(value);
-        else
-            values[index-1] =  stof(value);
-    }
-};
-int dat_percentage[3] = {10,50,100};
-int thread_count[4] = {1,2,4,8};
-int per_thread = 0;
 int no_of_cores = 8;
+int thread_count[4] = {1,2,4,8};
+int data_percentages[3] = {10,50,100};
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
-vector<data_> point_list;
-int PRED_POS = 0,TP = 0,FP = 0,TN = 0,FN = 0;
-float e = 2.71828;
-float bias = -0.35;
-float weights[19] = { 0.12, -0.07, 0.05, 0.09, -0.11, 0.03, 0.08, -0.02,
-                      0.06, 0.04, -0.05, 0.10, -0.08, 0.07, 0.02, -0.03,
-                      0.11, -0.06 };
+int nodes;
+vector<vector<int>> graph_global;
 
-void* calculate_linear_score_and_prob_and_set_data(void* arg)
-{// calculates everything and sets the global values
-    int thread_index = *((int*)arg);
-    int start = per_thread*thread_index;
-    int end_limit = ((per_thread*thread_index+per_thread)>=point_list.size())?point_list.size():(per_thread*thread_index+per_thread);
+vector<int> distances;
+queue<int> queue_;
+vector<int> level_count;
+int Edges_total;
+int Edges_usable;
 
-    int TP_local = 0,FP_local = 0,TN_local = 0,FN_local = 0,PRED_POS_local = 0;
+int reachable = 0;
+int max_distance = 0;
+int per_thread = 0;
 
-    for( int gl = start; gl < end_limit; gl++ )
+void compute()
+{
+    //BFS
+    distances.assign(nodes, -1);
+    distances[0] = 0;
+    queue_.push(0);
+    while (!queue_.empty())
     {
-        ////////////////////
-        float lin_score = bias;
-        for( int i = 0; i < 18; i++ )
+        int current_node = queue_.front();
+        queue_.pop();
+
+        for (int i = 0; i < graph_global[current_node].size(); i++)
         {
-            lin_score+=(weights[i]*point_list[gl].values[i]);
+            int neighbor = graph_global[current_node][i];
+            if (distances[neighbor] == -1)
+            {
+                distances[neighbor] = distances[current_node] + 1;
+                queue_.push(neighbor);
+            }
         }
-        float prob = 1/(1+pow(e,-1*lin_score));
-        
-        if(prob >= 0.5)
+    }//This cannot be parallelised until there is a queue
+
+}
+
+void* MaxDistanceFind(void* arg)
+{
+    int thread_index = *((int*)arg);
+    delete (int*)arg;
+    int start = per_thread*thread_index;
+    int end_limit = ((per_thread*thread_index+per_thread)>=nodes)?nodes:(per_thread*thread_index+per_thread);
+    int local_reachable = 0;
+    int local_maximum = 0;
+    //Max distance
+    for (int i = start; i < end_limit; i++)
+    {
+        if (distances[i] != -1)
         {
-            point_list[gl].y_prime = 1;
-            PRED_POS_local++;
+            local_reachable++;
+            if (distances[i] > local_maximum)
+                local_maximum = distances[i];
         }
-        if(point_list[gl].y == 1 && point_list[gl].y_prime == 1)
-        TP_local++;
-        else if(point_list[gl].y == 0 && point_list[gl].y_prime == 1)
-        FP_local++;
-        else if(point_list[gl].y == 0 && point_list[gl].y_prime == 0)
-        TN_local++;
-        else if(point_list[gl].y == 1 && point_list[gl].y_prime == 0)
-        FN_local++;
-        ////////////////////
     }
     pthread_mutex_lock(&lock);
-    PRED_POS += PRED_POS_local;
-    TP+=TP_local;
-    FP+=FP_local;
-    TN+=TN_local;
-    FN+=FN_local;
+    reachable += local_reachable;
+    max_distance = max(local_maximum,max_distance);
     pthread_mutex_unlock(&lock);
-
-//    delete arg;
-    pthread_exit(NULL);    
+    pthread_exit(NULL);
 }
 
-void getOutput(int N,double time,int dat,int thr)
+void* Nodes_At_K_Distance(void* arg)
 {
-    cout<<"\nThreads Used: "<<thread_count[thr];    
-    cout<<"\nPercentage of data: "<<dat_percentage[dat]<<"%";
-    cout<<"\nChunkSize: "<<per_thread;    
-    cout<<"\nTotal Records: " << N << "\n";
-    cout<<"PRED_POS : " << PRED_POS << "\n";
-    cout<<"TP : " << TP << "\n";
-    cout<<"FP : " << FP << "\n";
-    cout<<"TN : " << TN << "\n";
-    cout<<"FN : " << FN << "\n";
-    cout<<"\nElapsed Time: "<<time<<"ms"<<endl;    
+    int thread_index = *((int*)arg);
+    delete (int*)arg;
+    int start = per_thread*thread_index;
+    int end_limit = ((per_thread*thread_index+per_thread)>=nodes)?nodes:(per_thread*thread_index+per_thread);
+
+    vector<int> level_count_local(max_distance + 1, 0);
+    //Nodes a k distance
+    for (int i = start; i < end_limit; i++)
+    {
+        if (distances[i] != -1)
+            level_count_local[distances[i]]++;
+    }
+    pthread_mutex_lock(&lock);
+    for (int i = 0; i <= max_distance; i++)
+        level_count[i] += level_count_local[i];
+    pthread_mutex_unlock(&lock);    
+    pthread_exit(NULL);
 }
+
+void getOutput(int elapsed_ms,int dat_count,int thr)
+{
+    cout << "\nData Percentage "<<data_percentages[dat_count]<<"%";
+    cout << "\nTime : " << elapsed_ms;
+    cout << "\nThreads Used : " << thread_count[thr];    
+    cout << "\nChunk Size : " << per_thread<<" elements processed.";        
+    cout << "\nSource : 0";
+    cout << "\nReachable : " << reachable;
+    cout << "\nMaximum distance : " << max_distance;
+    for (int k = 0; k <= max_distance; k++)
+        cout << "\n" << k << " " << level_count[k];
+    cout << "\n";
+}
+
 
 int main()
 {
-    int total_num_lines = 5000001;
-    cout<<"\n------------------------\n\tV3\n------------------------\n";
-    for (int thr = 0; thr < 4; thr++ )    
-    {
-        for (int dat_count = 0; dat_count < 3; dat_count++ )
-        {
-            PRED_POS = 0,TP = 0,FP = 0,TN = 0,FN = 0;
-            ifstream input_file("susy.csv");
-            // using a the first few rows of the data set during development
-            string consume;
-            getline(input_file, consume);
-            int data_limit_counter = 0;
-            while(!input_file.eof())
-            {
-                bool data_reading_exception_done = false;
-                string row;
-                data_ holder;
-                getline(input_file, row);
-                stringstream temp_stream(row);
-                int i = 0;
-                while (!temp_stream.eof())
-                {
-                    string word;
-                    getline(temp_stream, word, ',');
-                    if(word=="")
-                    {   //This condition is to fix '\n' at the end of the csv
-                        data_reading_exception_done = true;break;       
-                    }
+    cout<<"\n------------------------\n\tV2\n------------------------\n";
 
-                    holder.setValue(i,word);
-                    i++;
-                }
-                if(data_reading_exception_done) break;
-                point_list.push_back(holder);        
-                data_limit_counter++;       
-                if(data_limit_counter >= (total_num_lines*dat_percentage[dat_count]/100))
-                {
-                    cout<<"\n"<<data_limit_counter<<"<--\n";
-                    break;
-                }
+    for(int dat_count = 0; dat_count < 3; dat_count++)    
+    {
+        for( int thr = 0; thr < 4; thr++ )
+        {
+            ifstream input_file("web.txt");
+            string line;
+            input_file >> nodes >> Edges_total;
+
+            Edges_usable = Edges_total*data_percentages[dat_count]/100;
+
+            int u, v;
+            graph_global.resize(nodes);
+            for (int i = 0; i < Edges_usable; i++)
+            {
+                input_file >> u >> v;
+                if (u >= 0 && u < nodes && v >= 0 && v < nodes)
+                // This condition was brought to you by chatGPT
+                graph_global[u].push_back(v);
             }
             input_file.close();
 
+            pthread_t* threads_A = new pthread_t[thread_count[thr]];
+            pthread_t* threads_B = new pthread_t[thread_count[thr]];
+            per_thread = (int)ceil((nodes)/thread_count[thr]);
+            
             struct timespec t_start, t_end;
-            clock_gettime(CLOCK_MONOTONIC, &t_start);    
-
-            pthread_t* threads = new pthread_t[thread_count[thr]];
-            per_thread = (int)ceil(point_list.size()/thread_count[thr]);
+            clock_gettime(CLOCK_MONOTONIC, &t_start);
+            compute();
             for(int i=0;i<thread_count[thr];i++)
-            {    
+            {
                 int* ind = new int;
                 *ind = i;
-                pthread_create(threads+i, NULL, calculate_linear_score_and_prob_and_set_data, ind);
+                pthread_create(threads_A+i, NULL, MaxDistanceFind, ind);
                 cpu_set_t cpuset;
                 CPU_ZERO(&cpuset);
                 CPU_SET(i%no_of_cores, &cpuset);
-                pthread_setaffinity_np(threads[i], sizeof(cpu_set_t), &cpuset);                        
+                pthread_setaffinity_np(threads_A[i], sizeof(cpu_set_t), &cpuset);                        
             }
-
             for (int i = 0; i < thread_count[thr]; i++)
             {
-                pthread_join(threads[i], NULL);
+                pthread_join(threads_A[i], NULL);
+            }
+
+            level_count.assign(max_distance + 1, 0);
+
+            for(int i=0;i<thread_count[thr];i++)
+            {
+                int* ind = new int;
+                *ind = i;
+                pthread_create(threads_B+i, NULL, Nodes_At_K_Distance, ind);
+                cpu_set_t cpuset;
+                CPU_ZERO(&cpuset);
+                CPU_SET(i%no_of_cores, &cpuset);
+                pthread_setaffinity_np(threads_B[i], sizeof(cpu_set_t), &cpuset);        
+            }
+            for (int i = 0; i < thread_count[thr]; i++)
+            {
+                pthread_join(threads_B[i], NULL);
             }
 
             clock_gettime(CLOCK_MONOTONIC, &t_end);
             double elapsed_ms =
             (t_end.tv_sec - t_start.tv_sec) * 1000.0 +
             (t_end.tv_nsec - t_start.tv_nsec) / 1e6;
+            getOutput(elapsed_ms,dat_count,thr);
 
-            getOutput(point_list.size(),elapsed_ms,dat_count,thr);
+            delete[]threads_A;
+            delete[]threads_B;
+            vector<vector<int>>().swap(graph_global);
+            vector<int>().swap(distances);
+            vector<int>().swap(level_count);
+            queue<int>().swap(queue_);
+            nodes = 0;
+            Edges_total = 0;
+            Edges_usable = 0;
+            reachable = 0;
+            max_distance = 0;
+            per_thread = 0;
         }
     }
-
     return 0;
 }
