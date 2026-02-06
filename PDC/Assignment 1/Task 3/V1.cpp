@@ -2,15 +2,17 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <cmath>
 #include <pthread.h>
 #include <queue>
+#include <map>
 
 using namespace std;
 
 int data_percentages[3] = {10,50,100};
 
 int nodes;
-vector<vector<int>> graph_global;
+map<int,vector<int>> graph_global;
 
 vector<int> distances;
 queue<int> queue_;
@@ -67,7 +69,7 @@ void compute()
 void getOutput(int elapsed_ms,int dat_count)
 {
     cout << "\nData Percentage "<<data_percentages[dat_count]<<"%";
-    cout << "\nTime : " << elapsed_ms;
+    cout << "\nTime : " << elapsed_ms<<"ms";
     cout << "\nSource : 0";
     cout << "\nReachable : " << reachable;
     cout << "\nMaximum distance : " << max_distance;
@@ -85,17 +87,15 @@ int main()
     {
         ifstream input_file("web.txt");
         string line;
+        
         input_file >> nodes >> Edges_total;
-
-        Edges_usable = Edges_total*data_percentages[dat_count]/100;
+        Edges_usable = (int)round(Edges_total*data_percentages[dat_count]/100);
 
         int u, v;
-        graph_global.resize(nodes);
         for (int i = 0; i < Edges_usable; i++)
         {
             input_file >> u >> v;
-            if (u >= 0 && u < nodes && v >= 0 && v < nodes)
-            // This condition was brought to you by chatGPT
+            if(u>nodes)nodes = u;
             graph_global[u].push_back(v);
         }
         input_file.close();
@@ -109,6 +109,13 @@ int main()
         (t_end.tv_nsec - t_start.tv_nsec) / 1e6;
 
         getOutput(elapsed_ms,dat_count);
+
+        map<int, vector<int>>().swap(graph_global);
+        vector<int>().swap(distances);
+        vector<int>().swap(level_count);
+        queue<int>().swap(queue_);
+        reachable = 0;
+        max_distance = 0;
     }
 
     return 0;

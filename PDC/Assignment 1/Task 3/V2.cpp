@@ -5,6 +5,7 @@
 #include <pthread.h>
 #include <cmath>
 #include <queue>
+#include <map>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ int thread_count[4] = {1,2,4,8};
 int data_percentages[3] = {10,50,100};
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 int nodes;
-vector<vector<int>> graph_global;
+map<int,vector<int>> graph_global;
 
 vector<int> distances;
 queue<int> queue_;
@@ -97,7 +98,7 @@ void* Nodes_At_K_Distance(void* arg)
 void getOutput(int elapsed_ms,int dat_count,int thr)
 {
     cout << "\nData Percentage "<<data_percentages[dat_count]<<"%";
-    cout << "\nTime : " << elapsed_ms;
+    cout << "\nTime : " << elapsed_ms<<"ms";
     cout << "\nThreads Used : " << thread_count[thr];    
     cout << "\nChunk Size : " << per_thread<<" elements processed.";        
     cout << "\nSource : 0";
@@ -124,12 +125,10 @@ int main()
             Edges_usable = Edges_total*data_percentages[dat_count]/100;
 
             int u, v;
-            graph_global.resize(nodes);
             for (int i = 0; i < Edges_usable; i++)
             {
                 input_file >> u >> v;
-                if (u >= 0 && u < nodes && v >= 0 && v < nodes)
-                // This condition was brought to you by chatGPT
+                if (u > nodes)nodes=u;
                 graph_global[u].push_back(v);
             }
             input_file.close();
@@ -173,7 +172,7 @@ int main()
 
             delete[]threads_A;
             delete[]threads_B;
-            vector<vector<int>>().swap(graph_global);
+            map<int,vector<int>>().swap(graph_global);
             vector<int>().swap(distances);
             vector<int>().swap(level_count);
             queue<int>().swap(queue_);
