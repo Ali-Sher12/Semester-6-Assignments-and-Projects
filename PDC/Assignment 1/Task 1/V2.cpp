@@ -138,7 +138,7 @@ int main()
                 *ind = i;
                 pthread_create(threads+i, NULL, calculate_linear_score_and_prob_and_set_data, ind);
             }
-            cout<<"issue not in thread creation";
+
             for (int i = 0; i < thread_count[thr]; i++)
             {
                 pthread_join(threads[i], NULL);

@@ -3,7 +3,7 @@ jarvis2026@jarvis-HP:~/Documents/Repos/Semester-6 Assignments and Projects/PDC/A
 ------------------------
 	V2
 ------------------------
-issue not in thread creation
+
 Threads Used: 1
 Percentage of data: 10%
 ChunkSize: 500000
@@ -15,7 +15,7 @@ TN : 124090
 FN : 47948
 
 Elapsed Time: 48.2318ms
-issue not in thread creation
+
 Threads Used: 1
 Percentage of data: 50%
 ChunkSize: 2500000

@@ -143,7 +143,7 @@ int main()
                 CPU_SET(i%no_of_cores, &cpuset);
                 pthread_setaffinity_np(threads[i], sizeof(cpu_set_t), &cpuset);                  
             }
-            cout<<"issue not in thread creation";
+
             for (int i = 0; i < thread_count[thr]; i++)
             {
                 pthread_join(threads[i], NULL);
