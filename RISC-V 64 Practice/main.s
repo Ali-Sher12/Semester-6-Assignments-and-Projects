@@ -6,23 +6,25 @@ hello:
 .global _start
 
 _start:
-    li a0, 5          # argument: n = 5
-    call add_ten      # call function
-    # result now in a0 (15)
-    
-    li a7, 64
-    li a0, 1
-    la a1, hello
-    li a2, 10
-    ecall
-    
+    li t0, 1
+    li t1, 5
+    call factorial
+
     li a7, 93
-    li a0, 0
+    addi a0,t0,0
     ecall
 
-# Simple function: adds 10 to the argument
-# Input: a0 = number
-# Output: a0 = number + 10
-add_ten:
-    addi a0, a0, 10   # a0 = a0 + 10
-    ret               # return to caller
+factorial:
+    #stored return address in stack
+    addi sp,sp,-8
+    sd ra,0(sp)
+
+    beq t1,zero,done
+    mul t0,t0,t1
+    addi t1,t1,-1    
+    call factorial
+done:
+
+    ld ra,0(sp)
+    addi sp,sp,8
+    ret
