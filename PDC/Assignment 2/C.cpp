@@ -8,18 +8,16 @@ using namespace std;
 
 int nodes = 0;
 int num_edges = 0;
-long long total_triangles = 0;
+int total_triangles = 0;
 vector<vector<int>> graph_global;
 
-long long compute()
+void compute()
 {
-    long long triangles = 0;
-
     vector<int> deg(nodes);
     for (int i = 0; i < nodes; i++)
         deg[i] = graph_global[i].size();
 
-    #pragma omp parallel for schedule(dynamic) reduction(+:triangles)
+    #pragma omp parallel for schedule(dynamic) reduction(+:total_triangles)
     for (int u = 0; u < nodes; u++)
     {
         for (int v : graph_global[u])
@@ -35,7 +33,7 @@ long long compute()
                     int w = graph_global[u][i];
                     if ((deg[w] > deg[u] || (deg[w] == deg[u] && w > u)) &&
                         (deg[w] > deg[v] || (deg[w] == deg[v] && w > v)))
-                        triangles++;
+                        total_triangles++;
                     i++; j++;
                 }
                 else if (graph_global[u][i] < graph_global[v][j]) i++;
@@ -43,8 +41,6 @@ long long compute()
             }
         }
     }
-
-    return triangles;
 }
 
 void getOutput(double elapsed_ms)
@@ -55,22 +51,14 @@ void getOutput(double elapsed_ms)
     cout << "\nTime           : " << elapsed_ms << " ms\n";
 }
 
-int main(int argc, char* argv[])
+int main()
 {
-    string filename = (argc > 1) ? argv[1] : "Data/dataset1.txt";
+    string filename = "Data/dataset2.txt";
 
-    int num_threads = 4;
-    if (argc > 2) num_threads = atoi(argv[2]);
-    omp_set_num_threads(num_threads);
-    cout << "Using " << num_threads << " threads.\n";
+    omp_set_num_threads(4);
+    cout << "Using 4 threads.\n";
 
-    // ── Pass 1: find max node ID ──────────────────────────────────────────
     ifstream input_file(filename);
-    if (!input_file.is_open()) {
-        cerr << "Cannot open file: " << filename << "\n";
-        return 1;
-    }
-
     int u, v;
     while (input_file >> u >> v)
     {
@@ -81,7 +69,6 @@ int main(int argc, char* argv[])
     nodes += 1;
     input_file.close();
 
-    // ── Pass 2: load edges ────────────────────────────────────────────────
     graph_global.resize(nodes);
 
     input_file.open(filename);
@@ -94,7 +81,6 @@ int main(int argc, char* argv[])
     input_file.close();
     cout << "Data Read.\n";
 
-    // ── Sort and deduplicate ──────────────────────────────────────────────
     for (int i = 0; i < nodes; i++)
     {
         sort(graph_global[i].begin(), graph_global[i].end());
@@ -104,16 +90,14 @@ int main(int argc, char* argv[])
         );
     }
 
-    // ── Count edges ───────────────────────────────────────────────────────
     for (int i = 0; i < nodes; i++)
         num_edges += graph_global[i].size();
     num_edges /= 2;
 
-    // ── Run compute ───────────────────────────────────────────────────────
     struct timespec t_start, t_end;
     clock_gettime(CLOCK_MONOTONIC, &t_start);
 
-    total_triangles = compute();
+    compute();
 
     clock_gettime(CLOCK_MONOTONIC, &t_end);
     double elapsed_ms = (t_end.tv_sec  - t_start.tv_sec)  * 1000.0 +

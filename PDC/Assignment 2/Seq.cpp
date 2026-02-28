@@ -7,12 +7,11 @@ using namespace std;
 
 int nodes = 0;
 int num_edges = 0;
-long long total_triangles = 0;
+int total_triangles = 0;
 vector<vector<int>> graph_global;
 
-long long compute()
+void compute()
 {
-    long long triangles = 0;
 
     vector<int> deg(nodes);
     for (int i = 0; i < nodes; i++)
@@ -20,8 +19,9 @@ long long compute()
 
     for (int u = 0; u < nodes; u++)
     {
-        for (int v = 0; v < graph_global[u].size(); v++)
+        for (int v1 = 0; v1 < graph_global[u].size(); v1++)
         {
+            int v = graph_global[u][v1];
             if ((deg[v] < deg[u]) || (deg[v] == deg[u] && v < u)) continue;
 
             int i = 0, j = 0;
@@ -32,7 +32,7 @@ long long compute()
                     int w = graph_global[u][i];
                     if ((deg[w] > deg[u] || (deg[w] == deg[u] && w > u)) &&
                         (deg[w] > deg[v] || (deg[w] == deg[v] && w > v)))
-                        triangles++;
+                        total_triangles++;
                     i++; j++;
                 }
                 else if (graph_global[u][i] < graph_global[v][j]) i++;
@@ -40,8 +40,6 @@ long long compute()
             }
         }
     }
-
-    return triangles;
 }
 
 void getOutput(double elapsed_ms)
@@ -95,7 +93,7 @@ int main()
     struct timespec t_start, t_end;
     clock_gettime(CLOCK_MONOTONIC, &t_start);
 
-    total_triangles = compute();
+    compute();
 
     clock_gettime(CLOCK_MONOTONIC, &t_end);
     double elapsed_ms = (t_end.tv_sec  - t_start.tv_sec)  * 1000.0 +

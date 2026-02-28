@@ -13,7 +13,7 @@ long long total_triangles = 0;
 vector<vector<int>> graph_global;
 vector<int> deg;
 
-int intersect_simd(int you, int vee, int deg_u, int deg_v)
+int intersect_simd(int you, int vee)
 {
     int count = 0;
     int sA = graph_global[you].size();
@@ -38,8 +38,8 @@ int intersect_simd(int you, int vee, int deg_u, int deg_v)
                 int matched_idx = __builtin_ctz(mask) / 4;
                 int w = graph_global[you][i + matched_idx];
 
-                if ((deg[w] > deg_u || (deg[w] == deg_u && w > you)) &&
-                    (deg[w] > deg_v || (deg[w] == deg_v && w > vee)))
+                if ((deg[w] > deg[you] || (deg[w] == deg[you] && w > you)) &&
+                    (deg[w] > deg[vee] || (deg[w] == deg[vee] && w > vee)))
                     count++;
             }
         }
@@ -48,14 +48,13 @@ int intersect_simd(int you, int vee, int deg_u, int deg_v)
         else j += 8;
     }
 
-    // Scalar fallback for remaining elements
     while (i < sA && j < sB)
     {
         if (graph_global[you][i] == graph_global[vee][j])
         {
             int w = graph_global[you][i];
-            if ((deg[w] > deg_u || (deg[w] == deg_u && w > you)) &&
-                (deg[w] > deg_v || (deg[w] == deg_v && w > vee)))
+            if ((deg[w] > deg[you] || (deg[w] == deg[you] && w > you)) &&
+                (deg[w] > deg[vee] || (deg[w] == deg[vee] && w > vee)))
                 count++;
             i++; j++;
         }
@@ -66,16 +65,13 @@ int intersect_simd(int you, int vee, int deg_u, int deg_v)
     return count;
 }
 
-long long compute()
+void compute()
 {
-    long long triangles = 0;
-
     deg.resize(nodes);
     for (int i = 0; i < nodes; i++)
         deg[i] = graph_global[i].size();
 
-    // OpenMP threads on outer loop + SIMD inside intersect_simd()
-    #pragma omp parallel for schedule(dynamic) reduction(+:triangles)
+    #pragma omp parallel for schedule(dynamic) reduction(+:total_triangles)
     for (int u = 0; u < nodes; u++)
     {
         for (int v : graph_global[u])
@@ -83,11 +79,9 @@ long long compute()
             if (deg[v] < deg[u]) continue;
             if (deg[v] == deg[u] && v < u) continue;
 
-            triangles += intersect_simd(u, v, deg[u], deg[v]);
+            total_triangles += intersect_simd(u, v);
         }
     }
-
-    return triangles;
 }
 
 void getOutput(double elapsed_ms)
@@ -98,22 +92,14 @@ void getOutput(double elapsed_ms)
     cout << "\nTime           : " << elapsed_ms << " ms\n";
 }
 
-int main(int argc, char* argv[])
+int main()
 {
-    string filename = (argc > 1) ? argv[1] : "Data/dataset1.txt";
+    string filename = "Data/dataset2.txt";
 
-    int num_threads = 4;
-    if (argc > 2) num_threads = atoi(argv[2]);
-    omp_set_num_threads(num_threads);
-    cout << "Using " << num_threads << " threads.\n";
+    omp_set_num_threads(4);
+    cout << "Using 4 threads.\n";
 
-    // ── Pass 1: find max node ID ──────────────────────────────────────────
     ifstream input_file(filename);
-    if (!input_file.is_open()) {
-        cerr << "Cannot open file: " << filename << "\n";
-        return 1;
-    }
-
     int u, v;
     while (input_file >> u >> v)
     {
@@ -124,7 +110,6 @@ int main(int argc, char* argv[])
     nodes += 1;
     input_file.close();
 
-    // ── Pass 2: load edges ────────────────────────────────────────────────
     graph_global.resize(nodes);
 
     input_file.open(filename);
@@ -137,7 +122,6 @@ int main(int argc, char* argv[])
     input_file.close();
     cout << "Data Read.\n";
 
-    // ── Sort and deduplicate ──────────────────────────────────────────────
     for (int i = 0; i < nodes; i++)
     {
         sort(graph_global[i].begin(), graph_global[i].end());
@@ -147,16 +131,14 @@ int main(int argc, char* argv[])
         );
     }
 
-    // ── Count edges ───────────────────────────────────────────────────────
     for (int i = 0; i < nodes; i++)
         num_edges += graph_global[i].size();
     num_edges /= 2;
 
-    // ── Run compute ───────────────────────────────────────────────────────
     struct timespec t_start, t_end;
     clock_gettime(CLOCK_MONOTONIC, &t_start);
 
-    total_triangles = compute();
+    compute();
 
     clock_gettime(CLOCK_MONOTONIC, &t_end);
     double elapsed_ms = (t_end.tv_sec  - t_start.tv_sec)  * 1000.0 +

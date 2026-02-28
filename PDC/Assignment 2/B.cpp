@@ -8,12 +8,11 @@ using namespace std;
 
 int nodes = 0;
 int num_edges = 0;
-long long total_triangles = 0;
+int total_triangles = 0;
 vector<vector<int>> graph_global;
 
-long long compute()
+void compute()
 {
-    long long triangles = 0;
 
     vector<int> deg(nodes);
     for (int i = 0; i < nodes; i++)
@@ -30,7 +29,6 @@ long long compute()
             int sB = graph_global[v].size();
             int local_count = 0;
 
-            // Flatten both lists to raw pointers for omp simd
             const int* A = graph_global[u].data();
             const int* B = graph_global[v].data();
 
@@ -49,11 +47,9 @@ long long compute()
                 }
             }
 
-            triangles += local_count;
+            total_triangles += local_count;
         }
     }
-
-    return triangles;
 }
 
 void getOutput(double elapsed_ms)
@@ -66,15 +62,9 @@ void getOutput(double elapsed_ms)
 
 int main()
 {
-    string filename = "Data/dataset1.txt";
+    string filename = "Data/dataset2.txt";
 
-    // ── Pass 1: find max node ID ──────────────────────────────────────────
     ifstream input_file(filename);
-    if (!input_file.is_open()) {
-        cerr << "Cannot open file: " << filename << "\n";
-        return 1;
-    }
-
     int u, v;
     while (input_file >> u >> v)
     {
@@ -85,7 +75,6 @@ int main()
     nodes += 1;
     input_file.close();
 
-    // ── Pass 2: load edges ────────────────────────────────────────────────
     graph_global.resize(nodes);
 
     input_file.open(filename);
@@ -98,7 +87,6 @@ int main()
     input_file.close();
     cout << "Data Read.\n";
 
-    // ── Sort and deduplicate ──────────────────────────────────────────────
     for (int i = 0; i < nodes; i++)
     {
         sort(graph_global[i].begin(), graph_global[i].end());
@@ -108,16 +96,14 @@ int main()
         );
     }
 
-    // ── Count edges ───────────────────────────────────────────────────────
     for (int i = 0; i < nodes; i++)
         num_edges += graph_global[i].size();
     num_edges /= 2;
 
-    // ── Run compute ───────────────────────────────────────────────────────
     struct timespec t_start, t_end;
     clock_gettime(CLOCK_MONOTONIC, &t_start);
 
-    total_triangles = compute();
+    compute();
 
     clock_gettime(CLOCK_MONOTONIC, &t_end);
     double elapsed_ms = (t_end.tv_sec  - t_start.tv_sec)  * 1000.0 +
