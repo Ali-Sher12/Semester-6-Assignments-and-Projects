@@ -1,36 +1,37 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <map>
+#include <algorithm>
 
 using namespace std;
 
 int nodes = 0;
-int total_trinagles = 0;
-map<int,vector<int>> graph_global;
+int num_edges = 0;
+long long total_triangles = 0;
+vector<vector<int>> graph_global;
 
-int compute()
+long long compute()
 {
-    int triangles = 0;
+    long long triangles = 0;
 
     vector<int> deg(nodes);
-
     for (int i = 0; i < nodes; i++)
         deg[i] = graph_global[i].size();
 
-    for (int u = 0; u < nodes; u++) 
+    for (int u = 0; u < nodes; u++)
     {
-        for (int v : graph_global[u]) 
+        for (int v = 0; v < graph_global[u].size(); v++)
         {
             if ((deg[v] < deg[u]) || (deg[v] == deg[u] && v < u)) continue;
+
             int i = 0, j = 0;
-            while (i < (int)graph_global[u].size() && j < (int)graph_global[v].size()) 
+            while (i < (int)graph_global[u].size() && j < (int)graph_global[v].size())
             {
-                if (graph_global[u][i] == graph_global[v][j]) 
+                if (graph_global[u][i] == graph_global[v][j])
                 {
                     int w = graph_global[u][i];
                     if ((deg[w] > deg[u] || (deg[w] == deg[u] && w > u)) &&
-                        (deg[w] > deg[v] || (deg[w] == deg[v] && w > v))) 
+                        (deg[w] > deg[v] || (deg[w] == deg[v] && w > v)))
                         triangles++;
                     i++; j++;
                 }
@@ -43,53 +44,64 @@ int compute()
     return triangles;
 }
 
-void getOutput(int elapsed_ms)
+void getOutput(double elapsed_ms)
 {
-    cout << "\nTotal Vertices "<<nodes;
-    cout << "\nEdges "<<graph_global.size();    
-    cout << "\nTime : " << elapsed_ms<<"ms";
-    cout << "\nTotal Triangles : " << total_trinagles;
-    cout << "\n";
-}
-
-bool alreadyPresent(int u,int v)
-{
-    for(int i=0;i<graph_global[u].size();i++)
-        if(graph_global[u].at(i) == v)
-            return true;
-    
-    return false;
+    cout << "\nTotal Vertices : " << nodes;
+    cout << "\nTotal Edges    : " << num_edges;
+    cout << "\nTriangles      : " << total_triangles;
+    cout << "\nTime           : " << elapsed_ms << " ms\n";
 }
 
 int main()
 {
-//        ifstream input_file("Data/dataset1.txt");
-//        ifstream input_file("Data/dataset1.txt");
-        ifstream input_file("Data/dataset3.txt");        
-        string line;
-        
-        int u, v;
-        while(input_file >> u >> v)
-        {            
-            if(u==v)continue;
-            if(alreadyPresent(u,v))
-            if(u>nodes)nodes = u;
-            if(v>nodes)nodes = v;            
-            graph_global[u].push_back(v);
-            graph_global[v].push_back(u);            
-        }
-        input_file.close();
-        cout<<"Data Read.\n";
+    string filename = "Data/dataset2.txt";
+    ifstream input_file(filename);
 
-        struct timespec t_start, t_end;
-        clock_gettime(CLOCK_MONOTONIC, &t_start);
-        total_trinagles = compute();
-        clock_gettime(CLOCK_MONOTONIC, &t_end);
-        double elapsed_ms =
-        (t_end.tv_sec - t_start.tv_sec) * 1000.0 +
-        (t_end.tv_nsec - t_start.tv_nsec) / 1e6;
+    int u, v;
+    while (input_file >> u >> v)
+    {
+        if (u == v) continue;
+        if (u > nodes) nodes = u;
+        if (v > nodes) nodes = v;
+    }
+    nodes += 1;
+    input_file.close();
+    graph_global.resize(nodes);
 
-        getOutput(elapsed_ms);
-        
+    input_file.open(filename);
+    while (input_file >> u >> v)
+    {
+        if (u == v) continue;
+        graph_global[u].push_back(v);
+        graph_global[v].push_back(u);
+    }
+    input_file.close();
+    cout << "Data Read.\n";
+
+    //GPT generated part. Sorry.
+    for (int i = 0; i < nodes; i++)
+    {
+        sort(graph_global[i].begin(), graph_global[i].end());
+        graph_global[i].erase(
+            unique(graph_global[i].begin(), graph_global[i].end()),
+            graph_global[i].end()
+        );
+    }
+
+    for (int i = 0; i < nodes; i++)
+        num_edges += graph_global[i].size();
+    num_edges /= 2;
+
+    struct timespec t_start, t_end;
+    clock_gettime(CLOCK_MONOTONIC, &t_start);
+
+    total_triangles = compute();
+
+    clock_gettime(CLOCK_MONOTONIC, &t_end);
+    double elapsed_ms = (t_end.tv_sec  - t_start.tv_sec)  * 1000.0 +
+                        (t_end.tv_nsec - t_start.tv_nsec) / 1e6;
+
+    getOutput(elapsed_ms);
+
     return 0;
 }
