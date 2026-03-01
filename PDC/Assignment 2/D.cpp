@@ -94,7 +94,7 @@ void getOutput(double elapsed_ms)
 
 int main()
 {
-    string filename = "Data/dataset2.txt";
+    string filename = "Data/dataset3.txt";
 
     omp_set_num_threads(4);
     cout << "Using 4 threads.\n";

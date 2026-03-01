@@ -20,8 +20,9 @@ void compute()
     #pragma omp parallel for schedule(dynamic) reduction(+:total_triangles)
     for (int u = 0; u < nodes; u++)
     {
-        for (int v : graph_global[u])
+        for (int v1 = 0; v1 < graph_global[u].size(); v1++)
         {
+            int v = graph_global[u][v1];
             if (deg[v] < deg[u]) continue;
             if (deg[v] == deg[u] && v < u) continue;
 
@@ -53,7 +54,7 @@ void getOutput(double elapsed_ms)
 
 int main()
 {
-    string filename = "Data/dataset2.txt";
+    string filename = "Data/dataset1.txt";
 
     omp_set_num_threads(4);
     cout << "Using 4 threads.\n";

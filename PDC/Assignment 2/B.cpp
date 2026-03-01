@@ -32,7 +32,7 @@ void compute()
             const int* A = graph_global[u].data();
             const int* B = graph_global[v].data();
 
-            #pragma omp simd reduction(+:local_count)
+            #pragma omp for simd reduction(+:local_count)
             for (int i = 0; i < sA; i++)
             {
                 for (int j = 0; j < sB; j++)
@@ -62,7 +62,7 @@ void getOutput(double elapsed_ms)
 
 int main()
 {
-    string filename = "Data/dataset2.txt";
+    string filename = "Data/dataset3.txt";
 
     ifstream input_file(filename);
     int u, v;

@@ -22,7 +22,7 @@ int intersect_simd(int you, int vee)
     while (i + 8 <= sA && j + 8 <= sB)
     {
         __m256i va = _mm256_loadu_si256((__m256i*)&graph_global[you][i]);
-
+        // if max of A's chunk is less than min iof B's chunk, and vv, then skip.
         if (graph_global[you][i + 7] < graph_global[vee][j]) { i += 8; continue; }
         if (graph_global[vee][j + 7] < graph_global[you][i]) { j += 8; continue; }
 
@@ -30,7 +30,7 @@ int intersect_simd(int you, int vee)
         {
             __m256i splat = _mm256_set1_epi32(graph_global[vee][j + r]);
             __m256i cmp   = _mm256_cmpeq_epi32(va, splat);
-            int mask      = _mm256_movemask_epi8(cmp);
+            int mask = _mm256_movemask_epi8(cmp);
 
             if (mask != 0)
             {
@@ -92,7 +92,7 @@ void getOutput(double elapsed_ms)
 
 int main()
 {
-    string filename = "Data/dataset2.txt";
+    string filename = "Data/dataset3.txt";
 
     ifstream input_file(filename);
     int u, v;

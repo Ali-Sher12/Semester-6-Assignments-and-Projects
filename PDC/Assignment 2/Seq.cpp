@@ -52,7 +52,7 @@ void getOutput(double elapsed_ms)
 
 int main()
 {
-    string filename = "Data/dataset2.txt";
+    string filename = "Data/dataset3.txt";
     ifstream input_file(filename);
 
     int u, v;
